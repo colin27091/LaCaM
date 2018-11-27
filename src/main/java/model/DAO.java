@@ -1,5 +1,6 @@
 package model;
 
+import model.tables.Customer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,21 +24,8 @@ public class DAO {
     }
     
     public Customer getCustomer() throws SQLException {
-
-		List<DiscountCode> result = new LinkedList<>();
-
-		String sql = "SELECT * FROM DISCOUNT_CODE ORDER BY DISCOUNT_CODE";
-		try (Connection connection = myDataSource.getConnection(); 
-		     PreparedStatement stmt = connection.prepareStatement(sql)) {
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				String id = rs.getString("DISCOUNT_CODE");
-				float rate = rs.getFloat("RATE");
-				DiscountCode c = new DiscountCode(id, rate);
-				result.add(c);
-			}
-		}
-		return result;
+        Customer c;
+        return c;
 	}
     
     
