@@ -16,7 +16,6 @@ public class DataSourceFactory {
 	 */
 	public static DataSource getDataSource() {
 		DataSource result;
-                System.out.println("Data Source appelé");
 		switch (TYPE) {
 			case server: // Derby mode serveur, doit être démarré indépendamment
 				org.apache.derby.jdbc.ClientDataSource ds = new org.apache.derby.jdbc.ClientDataSource();

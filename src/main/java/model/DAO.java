@@ -23,10 +23,9 @@ public class DAO {
         this.ds = dataSource;
     }
     
-    public Customer getCustomer() throws SQLException {
-        Customer c;
-        return c;
-	}
+    public Customer getCustomer(int customer_id){
+        return new Customer(0,' '," ");
+    }
     
     
     
