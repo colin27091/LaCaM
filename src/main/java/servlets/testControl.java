@@ -39,11 +39,6 @@ public class testControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         System.out.println("Run le servlet Control");
         DAO dao = new DAO(DataSourceFactory.getDataSource());
-        try {
-            dao.getCapital();
-        } catch (SQLException ex) {
-            Logger.getLogger(testControl.class.getName()).log(Level.SEVERE, null, ex);
-        }
        request.getRequestDispatcher("testbd.jsp").forward(request, response);
     }
 

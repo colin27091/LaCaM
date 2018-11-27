@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -25,39 +26,50 @@ import org.apache.derby.tools.ij;
 public class AppListener implements ServletContextListener {
 
     @Override
-    public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("AppListener appelé");
-        initializeDatabase();
+	public void contextInitialized(ServletContextEvent sce) {
+		if (!databaseExists()) {
+			initializeDatabase();
+		}
+	}
+
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {
+
+	}
+
+	private boolean databaseExists() {
+		boolean result = false;
+
+		DAO dao = new DAO(DataSourceFactory.getDataSource());
+		try {
+			List<DiscountCode> allCodes = dao.allCodes();
+			Logger.getLogger("DiscountEditor").log(Level.INFO, "Database already exists");
+			result = true;
+		} catch (SQLException ex) {
+			Logger.getLogger("DiscountEditor").log(Level.INFO, "Database does not exist");
+		}
+		return result;
+	}
+
+	private void initializeDatabase() {
+		OutputStream nowhere = new OutputStream() {
+			@Override
+			public void write(int b) {
+			}
+		};
 		
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-        
-    }
-
-    private boolean databaseExists(){
-        boolean result = false;
-
-	DAO dao = new DAO(DataSourceFactory.getDataSource());
-        Logger.getLogger("testControl").log(Level.INFO, "Database already exists");
-        result = true;
-	return result;
-    }
-
-    private void initializeDatabase() {
-        
-        try {
+		Logger.getLogger("DiscountEditor").log(Level.INFO, "Creating databse from SQL script");
+		try {
 			Connection connection = DataSourceFactory.getDataSource().getConnection();
 			int result = ij.runScript(connection, this.getClass().getResourceAsStream("SQL.sql"), "UTF-8", System.out, "UTF-8");
 			if (result == 0) {
-				Logger.getLogger("testControl").log(Level.INFO, "Database succesfully created");
+				Logger.getLogger("DiscountEditor").log(Level.INFO, "Database succesfully created");
 			} else {
-				Logger.getLogger("testControl").log(Level.SEVERE, "Errors creating database");
+				Logger.getLogger("DiscountEditor").log(Level.SEVERE, "Errors creating database");
 			}
 		} catch (UnsupportedEncodingException | SQLException e) {
-			Logger.getLogger("testControl").log(Level.SEVERE, null, e);
-                        Logger.getLogger("testControl").log(Level.SEVERE, "L'erreur est ici", e);
+			Logger.getLogger("DiscountEditor").log(Level.SEVERE, null, e);
 		}
-    }
+
+	}
 }
