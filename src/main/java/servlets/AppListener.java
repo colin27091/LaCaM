@@ -5,6 +5,8 @@
  */
 package servlets;
 
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,6 +15,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import model.DAO;
 import model.DataSourceFactory;
+import org.apache.derby.tools.ij;
 
 /**
  * Web application lifecycle listener.
@@ -23,9 +26,9 @@ public class AppListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        if (!databaseExists()) {
-			initializeDatabase();
-		}
+        System.out.println("AppListener appelé");
+        initializeDatabase();
+		
     }
 
     @Override
@@ -37,12 +40,24 @@ public class AppListener implements ServletContextListener {
         boolean result = false;
 
 	DAO dao = new DAO(DataSourceFactory.getDataSource());
-        Logger.getLogger("DiscountEditor").log(Level.INFO, "Database already exists");
+        Logger.getLogger("testControl").log(Level.INFO, "Database already exists");
         result = true;
 	return result;
     }
 
     private void initializeDatabase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+			Connection connection = DataSourceFactory.getDataSource().getConnection();
+			int result = ij.runScript(connection, this.getClass().getResourceAsStream("SQL.sql"), "UTF-8", System.out, "UTF-8");
+			if (result == 0) {
+				Logger.getLogger("testControl").log(Level.INFO, "Database succesfully created");
+			} else {
+				Logger.getLogger("testControl").log(Level.SEVERE, "Errors creating database");
+			}
+		} catch (UnsupportedEncodingException | SQLException e) {
+			Logger.getLogger("testControl").log(Level.SEVERE, null, e);
+                        Logger.getLogger("testControl").log(Level.SEVERE, "L'erreur est ici", e);
+		}
     }
 }
