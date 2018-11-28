@@ -25,6 +25,7 @@
 		<input type="submit" value="Se connecter">
                 <input type="hidden" name="action" value="create">
                 <input type="submit" value="Creer un compte">
+                <div><h4>${error_message}</h4></div>
                 
                 
                 

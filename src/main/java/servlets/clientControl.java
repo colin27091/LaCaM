@@ -1,30 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO;
-import model.DataSourceFactory;
 import model.tables.Customer;
 
-/**
- *
- * @author c
- */
-@WebServlet(name = "loginControl", urlPatterns = {"/loginControl"})
-public class loginControl extends HttpServlet {
+
+@WebServlet(name = "clientControl", urlPatterns = {"/clientControl"})
+public class clientControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,39 +26,12 @@ public class loginControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        this.getServletContext().getRequestDispatcher("Views/PageClient.jsp").forward(request, response);
         String action = request.getParameter("action");
-        action = (action == null) ? "" : action; // Pour le switch qui n'aime pas les null
-        String email = request.getParameter("email");
-        String mdp = request.getParameter("mdp");
-        try{
-            DAO dao = new DAO(DataSourceFactory.getDataSource());
-            switch (action) {
-		case "connect":
-                    System.out.println(email + "     " + mdp);
-                    if(dao.isAdmin(email, mdp)){
-                        System.out.println("is admin");
-                        request.getRequestDispatcher("Views/PageAdmin.jsp").forward(request, response);
-                    } else {
-                        Customer customer = dao.getCustomerLogin(email,Integer.parseInt(mdp));
-                        if(customer != null){
-                            System.out.println(customer.toString());
-                            request.setAttribute("customer", customer);
-                            request.getRequestDispatcher("Views/PageClient.jsp").forward(request, response);
-                        } else {
-                            request.setAttribute("error_message", "Mauvais identifiant");
-                            request.getRequestDispatcher("Views/PageConnexion.jsp").forward(request, response);
-                        }
-                        
-                    }
-                    
-                    
-                    
-                    break;
-            }
-        }catch (Exception ex) {
-            
-        }
-        request.getRequestDispatcher("Views/PageConnexion.jsp").forward(request, response);
+        
+        request.getRequestDispatcher("Views/PageAnciennesCommandes.jsp");
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

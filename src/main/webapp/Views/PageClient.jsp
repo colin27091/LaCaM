@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- <jsp:forward page="/servlets/clientControl" /> --%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +14,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Vous etes connecté</h1>
+        <h1>Vous etes connecté ${customer.getName()}</h1>
+        <input type="hidden" name="action" value="more">
+	<input type="submit" value="En savoir plus">
         
     </body>
 </html>
