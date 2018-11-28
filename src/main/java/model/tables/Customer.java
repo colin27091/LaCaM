@@ -4,25 +4,25 @@ package model.tables;
 public class Customer {
     
     int customer_id;//clé primaire
-    char discount_code;//clé etrangère de la table DISCOUNT_CODE
+    String discount_code;//clé etrangère de la table DISCOUNT_CODE
     String zip;//clé etrangère de ta table MICRO_MARKET
     String name;
     String addressline1;
     String addressline2;
     String city;
     String state;
+    String phone;
     String fax;
     String email;
     int credit_limit;
     
-    public Customer(int customer_id, char discount_code, String zip) {
+    public Customer(int customer_id, String discount_code, String zip) {
         this.customer_id = customer_id;
         this.discount_code = discount_code;
         this.zip = zip;
     }
-    
-    
-    public Customer(int customer_id, char discount_code, String zip, String name, String addressline1, String addressline2, String city, String state, String fax, String email, int credit_limit) {
+
+    public Customer(int customer_id, String discount_code, String zip, String name, String addressline1, String addressline2, String city, String state, String phone, String fax, String email, int credit_limit) {
         this.customer_id = customer_id;
         this.discount_code = discount_code;
         this.zip = zip;
@@ -31,16 +31,65 @@ public class Customer {
         this.addressline2 = addressline2;
         this.city = city;
         this.state = state;
+        this.phone = phone;
         this.fax = fax;
         this.email = email;
         this.credit_limit = credit_limit;
     }
 
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public String getDiscount_code() {
+        return discount_code;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddressline1() {
+        return addressline1;
+    }
+
+    public String getAddressline2() {
+        return addressline2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getCredit_limit() {
+        return credit_limit;
+    }
+    
     public void setCustomer_id(int customer_id) {
         this.customer_id = customer_id;
     }
 
-    public void setDiscount_code(char discount_code) {
+    public void setDiscount_code(String discount_code) {
         this.discount_code = discount_code;
     }
 
@@ -66,6 +115,10 @@ public class Customer {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public void setFax(String fax) {

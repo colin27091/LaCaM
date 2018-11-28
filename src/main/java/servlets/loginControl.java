@@ -23,7 +23,7 @@ import model.DataSourceFactory;
  * @author c
  */
 @WebServlet(name = "testControl", urlPatterns = {"/testControl"})
-public class testControl extends HttpServlet {
+public class loginControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

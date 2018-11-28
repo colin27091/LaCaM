@@ -6,7 +6,7 @@
     </listener>
     <servlet>
         <servlet-name>testControl</servlet-name>
-        <servlet-class>servlets.testControl</servlet-class>
+        <servlet-class>servlets.loginControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>testControl</servlet-name>
