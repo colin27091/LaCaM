@@ -48,7 +48,7 @@ public class loginControl extends HttpServlet {
 		case "connect":
                     Customer customer = dao.getCustomerLogin(email,Integer.parseInt(mdp));
                     System.out.println(customer.toString());
-                    
+                    request.getRequestDispatcher("Views/PageClient.jsp").forward(request, response);
                     break;
             }
         }catch (Exception ex) {
