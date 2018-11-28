@@ -9,7 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="/Web Pages/css/PageConnexion.css" media="screen" />
+        <title>MaCaL</title>
+
     </head>
     <body>
         <h1>Bienvenue sur MaCaL !</h1>
