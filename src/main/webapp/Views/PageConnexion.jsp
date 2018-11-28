@@ -19,8 +19,8 @@
                 </br>
                 <label>Mot de passe : <input name="mdp"></label>
                 </br>
-		<input name="action1" value="Connexion" type="SUBMIT">
-                <input name="action2" value="Créer un compte" type="SUBMIT">
+		<input name="connexion" value="Connexion" type="SUBMIT">
+                <input name="creation" value="Créer un compte" type="SUBMIT">
 	</form>
     </body>
 </html>
