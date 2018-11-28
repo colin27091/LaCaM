@@ -22,7 +22,7 @@ import model.DataSourceFactory;
  *
  * @author c
  */
-@WebServlet(name = "testControl", urlPatterns = {"/testControl"})
+@WebServlet(name = "loginControl", urlPatterns = {"/loginControl"})
 public class loginControl extends HttpServlet {
 
     /**
@@ -37,9 +37,8 @@ public class loginControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println("Run le servlet Control");
-        DAO dao = new DAO(DataSourceFactory.getDataSource());
-       request.getRequestDispatcher("testbd.jsp").forward(request, response);
+        System.out.println("passage dans le loginControl");
+       request.getRequestDispatcher("Views/PageConnexion.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

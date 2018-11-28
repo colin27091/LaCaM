@@ -1,28 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <listener>
-        <description>ServletContextListener</description>
-        <listener-class>servlets.AppListener</listener-class>
-    </listener>
-    <servlet>
-        <servlet-name>testControl</servlet-name>
-        <servlet-class>servlets.loginControl</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>testControl</servlet-name>
-        <url-pattern>/testControl</url-pattern>
-    </servlet-mapping>
-    <welcome-file-list>
-        <welcome-file>testControl</welcome-file>
-    </welcome-file-list>
+    
+    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    <listener>
-        <listener-class>
-                 servlets.AppListener
-        </listener-class>
-    </listener>
+    <welcome-file-list>
+        <welcome-file>loginControl</welcome-file>
+    </welcome-file-list>
 </web-app>
