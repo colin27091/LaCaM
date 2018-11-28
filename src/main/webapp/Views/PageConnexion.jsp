@@ -12,10 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-                <form method="POST">
+        <h1>Bienvenue sur MaCaL !</h1>
+                <form method="POST" name="log">
 		<label>Email : <input name="email"></label>
+                </br>
+                </br>
                 <label>Mot de passe : <input name="mdp"></label>
+                </br>
 		<input name="action1" value="Connexion" type="SUBMIT">
                 <input name="action2" value="Créer un compte" type="SUBMIT">
 	</form>
