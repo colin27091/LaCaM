@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.DataSourceFactory;
+import model.tables.Customer;
 
 /**
  *
@@ -37,8 +38,23 @@ public class loginControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println("passage dans le loginControl");
-       request.getRequestDispatcher("Views/PageConnexion.jsp").forward(request, response);
+        String action = request.getParameter("action");
+        action = (action == null) ? "" : action; // Pour le switch qui n'aime pas les null
+        String email = request.getParameter("email");
+        String mdp = request.getParameter("mdp");
+        try{
+            DAO dao = new DAO(DataSourceFactory.getDataSource());
+            switch (action) {
+		case "connect":
+                    Customer customer = dao.getCustomerLogin(email,Integer.parseInt(mdp));
+                    System.out.println(customer.toString());
+                    
+                    break;
+            }
+        }catch (Exception ex) {
+            
+        }
+        request.getRequestDispatcher("Views/PageConnexion.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

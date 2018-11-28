@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/Web Pages/css/PageConnexion.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/PageConnexion.css" media="screen" />
         <title>MaCaL</title>
 
     </head>
@@ -21,8 +21,15 @@
                 </br>
                 <label>Mot de passe : <input name="mdp"></label>
                 </br>
-		<input name="connexion" value="Connexion" type="SUBMIT">
-                <input name="creation" value="Créer un compte" type="SUBMIT">
+                <input type="hidden" name="action" value="connect">
+		<input type="submit" value="Se connecter">
+                <input type="hidden" name="action" value="create">
+                <input type="submit" value="Creer un compte">
+                
+                
+                
+                
+ 
 	</form>
     </body>
 </html>
