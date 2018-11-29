@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1>Bienvenue sur MaCaL !</h1>
-                <form method="POST" name="log">
+            <form method="POST" name="log">
 		<label>Email : <input name="email"></label>
                 </br>
                 </br>
@@ -26,11 +26,7 @@
                 <input type="hidden" name="action" value="create">
                 <input type="submit" value="Creer un compte">
                 <div><h4>${error_message}</h4></div>
-                
-                
-                
-                
- 
-	</form>
+         
+            </form>
     </body>
 </html>

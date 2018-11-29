@@ -12,8 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Nouveau Client</h1>
-                <form method="POST">
+        <h1>Bienvenu sur la page de création de votre compte client</h1>
+            <form method="POST">
 		<label>Prénom : <input name="prenom"></label>
                 </br>
                 </br>
@@ -39,5 +39,6 @@
                 </br>
                 </br>
                 <input name="action" value="Valider" type="SUBMIT">
+            </form>
     </body>
 </html>
