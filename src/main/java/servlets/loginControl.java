@@ -42,6 +42,7 @@ public class loginControl extends HttpServlet {
         action = (action == null) ? "" : action; // Pour le switch qui n'aime pas les null
         String email = request.getParameter("email");
         String mdp = request.getParameter("mdp");
+        System.out.println(email);
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
             switch (action) {
