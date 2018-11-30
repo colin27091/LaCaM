@@ -10,9 +10,13 @@ public class Purchase {
     int product_id;//clé étrangère
     int quantity;
     double shipping_cost;
-    LocalDate shipping_date;
-    LocalDate sales_dates;
+    String shipping_date;
+    String sales_dates;
     String freight_company;
+    
+    public Purchase(){
+        
+    }
 
     public Purchase(int order_num, int customer_id, int product_id) {
         this.order_num = order_num;
@@ -20,7 +24,7 @@ public class Purchase {
         this.product_id = product_id;
     }
 
-    public Purchase(int order_num, int customer_id, int product_id, int quantity, double shipping_cost, LocalDate shipping_date, LocalDate sales_dates, String freight_company) {
+    public Purchase(int order_num, int customer_id, int product_id, int quantity, double shipping_cost, String shipping_date, String sales_dates, String freight_company) {
         this.order_num = order_num;
         this.customer_id = customer_id;
         this.product_id = product_id;
@@ -51,11 +55,11 @@ public class Purchase {
         this.shipping_cost = shipping_cost;
     }
 
-    public void setShipping_date(LocalDate shipping_date) {
+    public void setShipping_date(String shipping_date) {
         this.shipping_date = shipping_date;
     }
 
-    public void setSales_dates(LocalDate sales_dates) {
+    public void setSales_dates(String sales_dates) {
         this.sales_dates = sales_dates;
     }
 
