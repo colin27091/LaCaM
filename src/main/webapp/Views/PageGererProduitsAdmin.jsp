@@ -9,7 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <title>Gérer Produits</title>
+
+        <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
+        <title>JSP Page</title>
+
     </head>
     <body>
         <h1>MaCal</h1>

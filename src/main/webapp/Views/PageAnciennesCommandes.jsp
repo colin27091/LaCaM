@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
         <title>Anciennes Commandes</title>
     </head>
     <body>
@@ -19,5 +20,10 @@
         <li>Mon Panier</li>
         </ul>
         
+        
+ 
+        <h1>Hello World!</h1>
+        <h1>Anciennes commandes de ${customer.getName()}</h1>
+
     </body>
 </html>

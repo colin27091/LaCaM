@@ -37,6 +37,13 @@ public class Customer {
         this.credit_limit = credit_limit;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" + "customer_id=" + customer_id + ", name=" + name + ", city=" + city + ", email=" + email + '}';
+    }
+    
+    
+
     public int getCustomer_id() {
         return customer_id;
     }

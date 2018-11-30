@@ -9,7 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <title>Mon Panier</title>
+
+        <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
     </head>
     <body>
         <h1>MaCaL</h1>

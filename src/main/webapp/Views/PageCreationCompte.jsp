@@ -9,19 +9,37 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Nouveau Client</h1>
-                <form method="POST">
+        <h1>Bienvenu sur la page de création de votre compte client</h1>
+            <form method="POST">
 		<label>Prénom : <input name="prenom"></label>
+                </br>
+                </br>
                 <label>Adresse : <input name="adresse"></label>
+                </br>
+                </br>
 		<label>Complément d'adresse : <input name="complement"></label>
+                </br>
+                </br>
                 <label>Ville : <input name="ville"></label>
+                </br>
+                </br>
                 <label>Etat : <input name="etat"></label>
+                </br>
+                </br>
                 <label>Téléphone : <input name="telephone"></label>
+                </br>
+                </br>
                 <label>Fax : <input name="fax"></label>
+                </br>
+                </br>
                 <label>Email : <input name="email"></label>
+                </br>
+                </br>
                 <input name="action" value="Valider" type="SUBMIT">
+            </form>
     </body>
 </html>

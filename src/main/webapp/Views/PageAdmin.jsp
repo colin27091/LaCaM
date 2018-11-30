@@ -9,8 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
         <title>Mon Panier</title>
     </head>
+
     <body>
         <h1>Macal</h1>
         
@@ -19,5 +21,8 @@
 	<li>Statistiques</li>
 	</ul>
         
+        
+    
+
     </body>
 </html>

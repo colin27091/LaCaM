@@ -13,6 +13,8 @@ import javax.sql.DataSource;
 public class DAO {
     
     private final DataSource ds;
+    private String emailAdmin = "root";
+    private String mdpAdmin = "root";
     
     
     
@@ -51,6 +53,11 @@ public class DAO {
 			}
 		}
         return customer;//Si le customer == null alors les paramètre de connexion sont incorrect
+    }
+    
+    
+    public boolean isAdmin(String email, String mdp){
+        return email.equals(emailAdmin) && mdp.equals(mdpAdmin);
     }
     
     
