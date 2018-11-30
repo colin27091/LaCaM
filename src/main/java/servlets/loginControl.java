@@ -54,8 +54,8 @@ public class loginControl extends HttpServlet {
                         Customer customer = dao.getCustomerLogin(email,Integer.parseInt(mdp));
                         if(customer != null){
                             System.out.println(customer.toString());
-                            request.setAttribute("customer", customer);
-                            request.getRequestDispatcher("Views/PageClient.jsp").forward(request, response);
+                            request.setAttribute("customer", customer); 
+                            request.getRequestDispatcher("clientControl").forward(request, response);
                         } else {
                             request.setAttribute("error_message", "Mauvais identifiant");
                             request.getRequestDispatcher("Views/PageConnexion.jsp").forward(request, response);

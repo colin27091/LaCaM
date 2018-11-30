@@ -25,11 +25,15 @@ public class clientControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        this.getServletContext().getRequestDispatcher("Views/PageClient.jsp").forward(request, response);
+        Customer customer = (Customer) request.getAttribute("customer");
+        request.setAttribute("customer", customer);
         String action = request.getParameter("action");
-        
-        request.getRequestDispatcher("Views/PageAnciennesCommandes.jsp");
+        System.out.println(action);
+        if(action.equals("more")){
+            request.getRequestDispatcher("Views/PageAnciennesCommandes.jsp").forward(request, response);
+        }
+        System.out.println("on est passé au bon endroit");
+        request.getRequestDispatcher("Views/PageClient.jsp").forward(request, response);
         
         
     }
