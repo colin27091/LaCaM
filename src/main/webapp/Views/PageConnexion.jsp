@@ -9,20 +9,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/Web Pages/css/PageConnexion.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
         <title>MaCaL</title>
 
     </head>
     <body>
         <h1>Bienvenue sur MaCaL !</h1>
-                <form method="POST" name="log">
+            <form method="POST" name="log">
 		<label>Email : <input name="email"></label>
                 </br>
                 </br>
                 <label>Mot de passe : <input name="mdp"></label>
                 </br>
-		<input name="connexion" value="Connexion" type="SUBMIT">
-                <input name="creation" value="Créer un compte" type="SUBMIT">
-	</form>
+                <input type="hidden" name="action" value="connect">
+		<input type="submit" value="Se connecter">
+                <input type="hidden" name="action" value="create">
+                <input type="submit" value="Creer un compte">
+                <div><h4>${error_message}</h4></div>
+         
+            </form>
     </body>
 </html>
