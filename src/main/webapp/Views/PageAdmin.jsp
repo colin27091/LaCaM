@@ -17,6 +17,8 @@
         google.charts.setOnLoadCallback(drawChart);
         
         function addData() {
+            
+            var produit = document.getElementById("nomProd").innerHTML;
             var L = [];
         }
 
@@ -39,6 +41,13 @@
 
         chart.draw(data, options);
       }
+      
+      function AfficherMasquer(){
+        divInfo = document.getElementById('piechart');
+ 
+        if (divInfo.style.display == 'none')
+            divInfo.style.display = 'block';
+    }
       </script>
     </head>
 
@@ -47,14 +56,15 @@
         
     
 	<h2>Gérer Produits</h2>
-            <label>Nom du produit que vous voulez ajouter, modifier ou supprimer : <input name="mdp"></label>
+            <label id="nomProd">Nom du produit que vous voulez ajouter, modifier ou supprimer : <input name="mdp"></label>
             <input type="hidden" name="action" value="create">
             <input type="submit" value="Valider">
         
 	<h3>Statistiques</h3>
         
-        
-            <div id="piechart" style="width: 900px; height: 500px;"></div>
+            <input type="hidden" name="action" value="create">
+            <input type="submit" value="Afficher" onClick="AfficherMasquer()">
+            <div id="piechart" style="width: 900px; height: 500px; display: none;"></div>
         
 
         
