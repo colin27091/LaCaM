@@ -7,10 +7,14 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.DAO_product;
+import model.DataSourceFactory;
+import model.tables.Product;
 
 /**
  *
@@ -33,9 +37,11 @@ public class adminControl extends HttpServlet {
         String views = "Views/PageAdmin.jsp";
         
         try{
-            
+            DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
+            List<Product> products = dao_product.getProducts();
+            request.setAttribute("products", products.size());
         }catch (Exception ex){
-            
+            request.setAttribute("error_message", ex);
         }
         request.getRequestDispatcher(views).forward(request, response);
     }

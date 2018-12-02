@@ -4,6 +4,7 @@
     Author     : leolo
 --%>
 
+<%@page import="model.tables.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -59,6 +60,8 @@
             <label id="nomProd">Nom du produit que vous voulez ajouter, modifier ou supprimer : <input name="mdp"></label>
             <input type="hidden" name="action" value="create">
             <input type="submit" value="Valider">
+            
+            <h3>${products}</h3>
         
 	<h3>Statistiques</h3>
         
