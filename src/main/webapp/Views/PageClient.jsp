@@ -1,11 +1,5 @@
-<%-- 
-    Document   : PageClient
-    Created on : 27 nov. 2018, 16:19:41
-    Author     : leolo
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%-- <jsp:forward page="/servlets/clientControl" /> --%>
 
 <!DOCTYPE html>
 <html>
@@ -25,6 +19,9 @@
         <h2>Vous etes connecté ${customer.getName()}</h2>
         <input type="hidden" name="action" value="more">
 	<input type="submit" value="En savoir plus">
+        <%-- Oh Mofid je t'ai mis à disposition une expression EL qui s'appele products qui est une liste de tout les produits de la base
+        tu peut t'en servir sous la forme ${products} en utilisant tout les paramètre present dans la classe product
+dont ${product.name} et plein d'autres pour faire l'affichage de tout les produits tu n'as qu'a parcourir cette liste <--%>
         
     </body>
 </html>

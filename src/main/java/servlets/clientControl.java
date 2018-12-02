@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DAO;
+import model.DAO_product;
 import model.DataSourceFactory;
 import model.tables.Customer;
+import model.tables.Product;
 
 
 @WebServlet(name = "clientControl", urlPatterns = {"/clientControl"})
@@ -33,12 +36,15 @@ public class clientControl extends HttpServlet {
         
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
+            DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             int customer_id = Integer.parseInt(request.getParameter("customer_id"));
             System.out.println(customer_id);
             Customer customer = dao.getCustomer(customer_id);
             request.setAttribute("customer", customer);
+            List<Product> products = dao_product.getProducts();
+            request.setAttribute("products", products);
         } catch (Exception ex){
-            
+            request.setAttribute("error_message", ex);
         }
         request.getRequestDispatcher(views).forward(request, response);
         
