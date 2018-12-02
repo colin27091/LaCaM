@@ -30,14 +30,13 @@ public class adminControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String views = "Views/PageClient.jsp";
+        String views = "Views/PageAdmin.jsp";
         
         try{
             
         }catch (Exception ex){
             
         }
-        System.out.println("OKK");
         request.getRequestDispatcher(views).forward(request, response);
     }
 

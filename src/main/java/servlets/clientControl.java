@@ -45,6 +45,7 @@ public class clientControl extends HttpServlet {
             System.out.println(products.isEmpty());
         } catch (Exception ex){
             request.setAttribute("error_message", ex);
+            request.getRequestDispatcher(views).forward(request, response);
         }
         request.getRequestDispatcher(views).forward(request, response);
         

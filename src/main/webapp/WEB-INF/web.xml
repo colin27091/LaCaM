@@ -40,5 +40,5 @@
     <welcome-file-list>
         <welcome-file>loginControl</welcome-file>
     </welcome-file-list>
-    
+
 </web-app>
