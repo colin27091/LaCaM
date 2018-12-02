@@ -39,41 +39,29 @@ public class loginControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
-        action = (action == null) ? "" : action; // Pour le switch qui n'aime pas les null
         String email = request.getParameter("email");
         String mdp = request.getParameter("mdp");
         String views ="Views/PageConnexion.jsp";
-        System.out.print(action);
+        System.out.println("on est dans le login");
+        System.out.println(action.toString() +"il est la");
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
-            switch (action) {
-		case "connect":
-                    System.out.println(email + "     " + mdp);
-                    if(dao.isAdmin(email, mdp)){
-                        System.out.println("is admin");
-                        views ="Views/PageAdmin.jsp";
-                    } else {
-                        if(dao.getLogin(email,Integer.parseInt(mdp))){
-                            response.sendRedirect("/MaCaL/clientControl?customer_id="+mdp);
-                            
-                        } else {
-                            request.setAttribute("error_message", "Mauvais identifiant");
-                            views = "Views/PageConnexion.jsp";
-                        }
-                        
-                    }
-                    break;
-                    
-                case "more":
-                    System.out.print("passé au mauvais endroit");
-                    
-                    
-                    
-                    break;
-                default: request.getRequestDispatcher(views).forward(request, response);
+            if(action.equals(null)){
+                if(dao.isAdmin(email, mdp)){
+                    System.out.print("Is admin");
+                } else if(dao.getLogin(email, Integer.parseInt(mdp))){
+                    response.sendRedirect("/MaCaL/clientControl?customer_id="+mdp);
+                } else {
+                    request.setAttribute("error_message", "Mauvais identifiant");
+                    request.getRequestDispatcher(views).forward(request, response);
+                }
             }
-        }catch (Exception ex) {
             
+            request.getRequestDispatcher(views).forward(request, response);
+            
+        }catch (Exception ex) {
+            request.setAttribute("error_message", ex);
+            request.getRequestDispatcher(views).forward(request, response);
         }
         
     }

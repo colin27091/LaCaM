@@ -36,12 +36,14 @@ public class DAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
                             String mail = rs.getString("EMAIL");
-                            if(email.equals(mail)){//Si les identifiants sont exact on rempli le customer
+                            if(email.equals(mail)){
                                 return true;
                             }
                             
 			}
-		}
+		}catch(Exception ex){
+                    
+                }
         return false;
     }
     

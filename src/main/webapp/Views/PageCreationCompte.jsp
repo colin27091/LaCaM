@@ -39,7 +39,10 @@
                 <label>Email : <input name="email"></label>
                 </br>
                 </br>
-                <input name="action" value="Valider" type="SUBMIT">
+                <input type="hidden" name="action" value="create">
+		<input type="submit" value="Valider">
+                <input type="hidden" name="action" value="cancel">
+		<input type="submit" value="Annuler">
             </form>
     </body>
 </html>

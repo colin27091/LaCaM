@@ -21,10 +21,11 @@
                 </br>
                 <label>Mot de passe : <input name="mdp"></label>
                 </br>
-                <input type="hidden" name="action" value="connect">
-		<input type="submit" value="Se connecter">
+                
                 <input type="hidden" name="action" value="create">
                 <input type="submit" value="Creer un compte">
+                <input type="hidden" name="action" value="connect">
+		<input type="submit" value="Se connecter">
                 <div><h4>${error_message}</h4></div>
          
             </form>

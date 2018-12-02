@@ -1,33 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    
-    
+    <servlet-mapping>
+        <servlet-name>adminControl</servlet-name>
+        <url-pattern>/adminControl</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-	 
-        <servlet>
-            <servlet-name>loginControl</servlet-name>
-            <servlet-class>servlets.loginControl</servlet-class>
-            
-	</servlet>
-	<servlet-mapping>
-            <servlet-name>loginControl</servlet-name>
-            <url-pattern>/loginControl</url-pattern>
-	</servlet-mapping>
-        
-        <servlet>
-            <servlet-name>clientControl</servlet-name>
-            <servlet-class>servlets.clientControl</servlet-class>
-            
-	</servlet>
-	<servlet-mapping>
-            <servlet-name>clientControl</servlet-name>
-            <url-pattern>/clientControl</url-pattern>
-	</servlet-mapping>
-        <welcome-file-list>
-            <welcome-file>loginControl</welcome-file>
-        </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>createCompteControl</servlet-name>
+        <url-pattern>/createCompteControl</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>loginControl</servlet-name>
+        <servlet-class>servlets.loginControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>createCompteControl</servlet-name>
+        <servlet-class>servlets.createCompteControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminControl</servlet-name>
+        <servlet-class>servlets.adminControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginControl</servlet-name>
+        <url-pattern>/loginControl</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>clientControl</servlet-name>
+        <servlet-class>servlets.clientControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>clientControl</servlet-name>
+        <url-pattern>/clientControl</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>loginControl</welcome-file>
+    </welcome-file-list>
+    
 </web-app>

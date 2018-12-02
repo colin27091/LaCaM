@@ -46,7 +46,24 @@ public class DAO_product {
     }
     
     public void addProduct(Product product){
-        String sql = "";
+        String sql = "INSERT INTO PRODUCT(PRODUCT_ID, MANUFACTURER_ID, PRODUCT_CODE, PURCHASE_COST, QUANTITY_ON_HAND, MARKUP, AVAILABLE, DESCRIPTION) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try(Connection connection = ds.getConnection();
+               PreparedStatement stmt = connection.prepareStatement(sql)){
+                stmt.setInt(1, product.getProduct_id());
+                stmt.setInt(2, product.getManufacturer_id());
+                stmt.setString(3, product.getProduct_code());
+                stmt.setFloat(4, (float) product.getPurchase_cost());
+                stmt.setInt(5, product.getQuantity_on_hand());
+                stmt.setFloat(6, (float) product.getMarkup());
+                stmt.setString(7, product.getAvailable());
+                stmt.setString(8, product.getDescription());
+                stmt.executeUpdate();
+        }catch (Exception ex){
+            
+        }
+        
+ 
     }
     
 }

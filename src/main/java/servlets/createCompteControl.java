@@ -1,23 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO;
-import model.DAO_product;
-import model.DataSourceFactory;
-import model.tables.Customer;
-import model.tables.Product;
 
-
-@WebServlet(name = "clientControl", urlPatterns = {"/clientControl"})
-public class clientControl extends HttpServlet {
+/**
+ *
+ * @author c
+ */
+public class createCompteControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,25 +29,15 @@ public class clientControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        String views = "Views/PageClient.jsp";
-        
+        String views = "Views/PageConnexion.jsp";
         try{
-            DAO dao = new DAO(DataSourceFactory.getDataSource());
-            DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
-            int customer_id = Integer.parseInt(request.getParameter("customer_id"));
-            Customer customer = dao.getCustomer(customer_id);
-            request.setAttribute("customer", customer);
-            List<Product> products = dao_product.getProducts();
-            request.setAttribute("products", products);
-            System.out.println(products.isEmpty());
-        } catch (Exception ex){
+            
+        }catch (Exception ex){
             request.setAttribute("error_message", ex);
+            views = "Views/PageCreationCompte.jsp";
         }
+        
         request.getRequestDispatcher(views).forward(request, response);
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

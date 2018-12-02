@@ -63,6 +63,38 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public int getProduct_id() {
+        return product_id;
+    }
+
+    public int getManufacturer_id() {
+        return manufacturer_id;
+    }
+
+    public String getProduct_code() {
+        return product_code;
+    }
+
+    public double getPurchase_cost() {
+        return purchase_cost;
+    }
+
+    public int getQuantity_on_hand() {
+        return quantity_on_hand;
+    }
+
+    public double getMarkup() {
+        return markup;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public String getDescription() {
+        return description;
+    }
     
     
     
