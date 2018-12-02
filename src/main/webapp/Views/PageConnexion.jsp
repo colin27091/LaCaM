@@ -19,7 +19,7 @@
 		<label>Email : <input name="email"></label>
                 </br>
                 </br>
-                <label>Mot de passe : <input type="password" name="mdp"></label>
+                <label>Mot de passe : <input name="mdp"></label>
                 </br>
                 <input type="hidden" name="action" value="connect">
 		<input type="submit" value="Se connecter">

@@ -1,7 +1,7 @@
 <%-- 
     Document   : PageGererProfil
     Created on : 27 nov. 2018, 16:22:28
-    Author     : Mofid Krim
+    Author     : leolo
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,28 +16,28 @@
         <h1>MaCaL</h1>
         <h1>Bienvenu sur la page de gestion de votre profil</h1>
             <form method="POST">
-		<label>Prénom : <input name="prenom" value = ${customer.getName()}></label>
+		<label>Prénom : <input name="prenom"></label>
                 </br>
                 </br>
-                <label>Adresse : <input name="adresse" value = ${customer.getAddressline1()}></label>
+                <label>Adresse : <input name="adresse"></label>
                 </br>
                 </br>
-		<label>Complément d'adresse : <input name="complement" value = ${customer.getAddressline2()}></label>
+		<label>Complément d'adresse : <input name="complement"></label>
                 </br>
                 </br>
-                <label>Ville : <input name="ville" value = ${customer.getCity()}></label>
+                <label>Ville : <input name="ville"></label>
                 </br>
                 </br>
-                <label>Etat : <input name="etat" value = ${customer.getState()}></label>
+                <label>Etat : <input name="etat"></label>
                 </br>
                 </br>
-                <label>Téléphone : <input name="telephone" value = ${customer.getPhone()}></label>
+                <label>Téléphone : <input name="telephone"></label>
                 </br>
                 </br>
-                <label>Fax : <input name="fax" value = ${customer.getFax()}></label>
+                <label>Fax : <input name="fax"></label>
                 </br>
                 </br>
-                <label>Email : <input name="email" value = ${customer.getEmail()}></label>
+                <label>Email : <input name="email"></label>
                 </br>
                 </br>
                 <input name="action" value="Sauvegarder" type="SUBMIT">
