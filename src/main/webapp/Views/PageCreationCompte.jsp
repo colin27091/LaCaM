@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Bienvenu sur la page de création de votre compte client</h1>
+        <h1>Bienvenue sur la page de création de votre compte client</h1>
             <form method="POST">
 		<label>Prénom : <input name="prenom"></label>
                 </br>

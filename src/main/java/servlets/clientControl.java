@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.DAO;
+import model.DataSourceFactory;
 import model.tables.Customer;
 
 
@@ -25,15 +27,20 @@ public class clientControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Customer customer = (Customer) request.getAttribute("customer");
-        request.setAttribute("customer", customer);
-        String action = request.getParameter("action");
-        System.out.println(action);
-        if(action.equals("more")){
-            request.getRequestDispatcher("Views/PageAnciennesCommandes.jsp").forward(request, response);
+        
+        
+        String views = "Views/PageClient.jsp";
+        
+        try{
+            DAO dao = new DAO(DataSourceFactory.getDataSource());
+            int customer_id = Integer.parseInt(request.getParameter("customer_id"));
+            System.out.println(customer_id);
+            Customer customer = dao.getCustomer(customer_id);
+            request.setAttribute("customer", customer);
+        } catch (Exception ex){
+            
         }
-        System.out.println("on est passé au bon endroit");
-        request.getRequestDispatcher("Views/PageClient.jsp").forward(request, response);
+        request.getRequestDispatcher(views).forward(request, response);
         
         
     }
