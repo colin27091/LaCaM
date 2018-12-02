@@ -42,6 +42,8 @@ public class loginControl extends HttpServlet {
         action = (action == null) ? "" : action; // Pour le switch qui n'aime pas les null
         String email = request.getParameter("email");
         String mdp = request.getParameter("mdp");
+        String views ="Views/PageConnexion.jsp";
+        System.out.print(action);
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
             switch (action) {
@@ -49,28 +51,31 @@ public class loginControl extends HttpServlet {
                     System.out.println(email + "     " + mdp);
                     if(dao.isAdmin(email, mdp)){
                         System.out.println("is admin");
-                        request.getRequestDispatcher("Views/PageAdmin.jsp").forward(request, response);
+                        views ="Views/PageAdmin.jsp";
                     } else {
-                        Customer customer = dao.getCustomerLogin(email,Integer.parseInt(mdp));
-                        if(customer != null){
-                            System.out.println(customer.toString());
-                            request.setAttribute("customer", customer); 
-                            request.getRequestDispatcher("clientControl").forward(request, response);
+                        if(dao.getLogin(email,Integer.parseInt(mdp))){
+                            response.sendRedirect("/MaCaL/clientControl?customer_id="+mdp);
+                            
                         } else {
                             request.setAttribute("error_message", "Mauvais identifiant");
-                            request.getRequestDispatcher("Views/PageConnexion.jsp").forward(request, response);
+                            views = "Views/PageConnexion.jsp";
                         }
                         
                     }
+                    break;
+                    
+                case "more":
+                    System.out.print("passé au mauvais endroit");
                     
                     
                     
                     break;
+                default: request.getRequestDispatcher(views).forward(request, response);
             }
         }catch (Exception ex) {
             
         }
-        request.getRequestDispatcher("Views/PageConnexion.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -13,11 +13,11 @@
         <title>Gérer Produits</title>
 
         <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
-        <title>JSP Page</title>
 
     </head>
     <body>
         <h1>MaCal</h1>
+        
         <ul id="menu">
 	<li>Ajout</li>
         <li>Modification</li>

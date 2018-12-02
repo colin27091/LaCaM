@@ -13,8 +13,7 @@
         <title>Gérer Produits</title>
     </head>
     <body>
-        <h1>MaCaL</h1>
-        <h1>Bienvenu sur la page de gestion de votre profil</h1>
+        <h1>Bienvenue sur la page de gestion de votre profil</h1>
             <form method="POST">
 		<label>Prénom : <input name="prenom" value = ${customer.getName()}></label>
                 </br>

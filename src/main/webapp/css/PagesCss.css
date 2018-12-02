@@ -18,3 +18,22 @@ form#log{
 h1{
     color : red;
 }
+
+#menu{
+	font-family: 'Coming Soon', cursive;
+	font-size: 30px;
+	background-color: #222 ;
+	height: 80px;
+	
+	list-style-type:none;
+	display:flex;
+	align-items:baseline;
+	justify-content:space-between;
+	
+	padding-right:400px;
+	padding-left:400px;
+}
+
+#menu a:hover {
+	color:#F7FF3C;
+}

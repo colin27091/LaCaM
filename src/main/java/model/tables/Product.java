@@ -12,6 +12,9 @@ public class Product {
     String available;
     String description;
 
+    public Product(){
+    }
+    
     public Product(int product_id, int manufacturer_id, String product_code) {
         this.product_id = product_id;
         this.manufacturer_id = manufacturer_id;

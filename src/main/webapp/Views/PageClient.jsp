@@ -21,8 +21,8 @@
         <li>Mes Anciennes Commandes</li>
         <li>Mon Panier</li>
         </ul>
-        <title>JSP Page</title>
-        <h1>Vous etes connecté ${customer.getName()}</h1>
+
+        <h2>Vous etes connecté ${customer.getName()}</h2>
         <input type="hidden" name="action" value="more">
 	<input type="submit" value="En savoir plus">
         
