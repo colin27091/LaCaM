@@ -74,8 +74,8 @@ public class createCompteControl extends HttpServlet {
                     customer.setDiscount_code(request.getParameter("discount_code"));
                     
                     
-                    if(dao_client.clientIsOK(customer)){
-                        dao_client.createClient(customer);
+                    if(dao_client.createClient(customer)){
+                        response.sendRedirect("/MaCaL/loginControl");
                     } else {
                         Enumeration<String> enumeration = request.getParameterNames();
                             while(enumeration.hasMoreElements()){
