@@ -1,5 +1,6 @@
 
 <%@page import="model.tables.Customer"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.List"%>
 <%@page import="model.tables.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -25,11 +26,9 @@
         <input type="hidden" name="action" value="more">
 	<input type="submit" value="En savoir plus">
        
-
-        <%for(Product product : products) {%>
-            <p><%=product.getDescription();%></p>
-        <%}%>
-        <p><%=products.get(0).getDescription()%></p>
+        <c:forEach var="product" items="${products}">
+            <p>${product.getDescription()}</p>
+        </c:forEach>
 
        
         <%-- Oh Mofid je t'ai mis à disposition une expression EL qui s'appele products qui est une liste de tout les produits de la base
