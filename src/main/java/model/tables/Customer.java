@@ -16,6 +16,9 @@ public class Customer {
     String email;
     int credit_limit;
     
+    public Customer(){
+    }
+    
     public Customer(int customer_id, String discount_code, String zip) {
         this.customer_id = customer_id;
         this.discount_code = discount_code;

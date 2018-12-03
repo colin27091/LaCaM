@@ -12,4 +12,14 @@ public class DAO_client {
         this.ds = dataSource;
     }
     
+    
+    public boolean clientIsOK(Customer customer){
+        String sql ="";
+        return true;
+    }
+    
+    public void createClient(Customer customer){
+        
+    }
+    
 }
