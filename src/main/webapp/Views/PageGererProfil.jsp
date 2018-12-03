@@ -27,16 +27,16 @@
                 <label>Ville : <input name="ville" value = ${customer.getCity()}></label>
                 </br>
                 </br>
-                <label>Etat : <input name="etat" value = ${customer.getPhone()}></label>
+                <label>Etat : <input name="etat" value = ${customer.getState()}></label>
                 </br>
                 </br>
-                <label>Téléphone : <input name="telephone" value = ${customer.getFax()}></label>
+                <label>Téléphone : <input name="telephone" value = ${customer.getPhone()}></label>
                 </br>
                 </br>
-                <label>Fax : <input name="fax" value = ${customer.getEmail()}></label>
+                <label>Fax : <input name="fax" value = ${customer.getFax()}></label>
                 </br>
                 </br>
-                <label>Email : <input name="email"></label>
+                <label>Email : <input name="email" ${customer.getEmail()}></label>
                 </br>
                 </br>
                 <input name="action" value="Sauvegarder" type="SUBMIT">
