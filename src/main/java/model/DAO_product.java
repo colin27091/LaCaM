@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 import model.tables.Product;
@@ -19,14 +20,16 @@ public class DAO_product {
     
     public DAO_product(DataSource dataSource) {
         this.ds = dataSource;
+        
     }
     
     public List<Product> getProducts() throws SQLException{
-        List<Product> products = null;
+        List<Product> products = new ArrayList<Product>();
         String sql = "SELECT * FROM PRODUCT";
         try (Connection connection = ds.getConnection(); 
             PreparedStatement stmt = connection.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
+            
 			while (rs.next()) {
                             
                             Product product = new Product();
@@ -39,7 +42,10 @@ public class DAO_product {
                             product.setAvailable(rs.getString("available"));
                             product.setDescription(rs.getString("description"));
                             products.add(product);
+                            
                         }
+        } catch (Exception ex){
+            System.out.println(ex);
         }
 	
         return products;

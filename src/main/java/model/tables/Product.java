@@ -32,6 +32,11 @@ public class Product {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" + "product_id=" + product_id + ", manufacturer_id=" + manufacturer_id + ", product_code=" + product_code + ", purchase_cost=" + purchase_cost + ", quantity_on_hand=" + quantity_on_hand + ", markup=" + markup + ", available=" + available + ", description=" + description + '}';
+    }
+
     public void setProduct_id(int product_id) {
         this.product_id = product_id;
     }

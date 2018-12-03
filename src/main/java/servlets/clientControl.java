@@ -33,7 +33,7 @@ public class clientControl extends HttpServlet {
         
         
         String views = "Views/PageClient.jsp";
-        
+        response.setContentType("/MaCaL/client");
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
@@ -42,11 +42,11 @@ public class clientControl extends HttpServlet {
             request.setAttribute("customer", customer);
             List<Product> products = dao_product.getProducts();
             request.setAttribute("products", products);
-            System.out.println(products.isEmpty());
         } catch (Exception ex){
             request.setAttribute("error_message", ex);
             request.getRequestDispatcher(views).forward(request, response);
         }
+        
         request.getRequestDispatcher(views).forward(request, response);
         
         
