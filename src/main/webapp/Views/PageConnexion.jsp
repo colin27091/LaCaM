@@ -23,6 +23,7 @@
                 </br>
                 <input type="hidden" name="action" value="connect">
 		<input type="submit" value="Se connecter">
+                
                 <input type="hidden" name="action" value="create">
                 <input type="submit" value="Creer un compte">
                 
