@@ -64,6 +64,7 @@ public class loginControl extends HttpServlet {
                         
                     }
                     break;
+                    
                 default: request.getRequestDispatcher(views).forward(request, response);
             }
             
