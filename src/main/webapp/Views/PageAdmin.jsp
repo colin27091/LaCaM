@@ -17,11 +17,6 @@
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
         
-        function addData() {
-            
-            var produit = document.getElementById("nomProd").innerHTML;
-            var L = [];
-        }
 
         function drawChart() {
 
@@ -60,11 +55,23 @@
             <label id="nomProd">Nom du produit que vous voulez ajouter, modifier ou supprimer : <input name="mdp"></label>
             <input type="hidden" name="action" value="create">
             <input type="submit" value="Valider">
-            
-            <h3>${products}</h3>
-        
+       
+        <c:forEach var="product" items="${products}">
+            <p >${product.getDescription()} <a href="/MaCaL/modifControl?product_id=${product.getProduct_id}"> Modifier</a>
+            </p>
+        </c:forEach>
+    
 	<h3>Statistiques</h3>
-        
+        <p>Chiffre d'affaire de MaCaL Entreprise selon  
+           <select name="choixGraph" id="choix">
+           <option value="zoneGeo">La zone géographique</option>
+           <option value="cateArticle">La catégorie d'articles</option>
+           <option value="clients">Les clients</option>      
+           </select>
+             de <input name="dateDebut">< à <input name="dateFin">
+            <input type="hidden" name="action" value="create">
+            <input type="submit" name="action" value="Valider">
+        </p>
             <input type="hidden" name="action" value="create">
             <input type="submit" value="Afficher" onClick="AfficherMasquer()">
             <div id="piechart" style="width: 900px; height: 500px; display: none;"></div>
