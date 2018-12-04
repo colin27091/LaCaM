@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="model.tables.Product"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -43,6 +44,9 @@
  
         if (divInfo.style.display == 'none')
             divInfo.style.display = 'block';
+        else{
+            divInfo.style.display = 'none';
+        }
     }
       </script>
     </head>
@@ -50,18 +54,13 @@
     <body>
         <h1>Macal</h1>
         
+    <ul id="menu">
+        <li>Gérer Produits</li>
+        <li>Clients</li>
+    </ul>
+
     
-	<h2>Gérer Produits</h2>
-            <label id="nomProd">Nom du produit que vous voulez ajouter, modifier ou supprimer : <input name="mdp"></label>
-            <input type="hidden" name="action" value="create">
-            <input type="submit" value="Valider">
-       
-        <c:forEach var="product" items="${products}">
-            <p >${product.getDescription()} <a href="/MaCaL/modifControl?product_id=${product.getProduct_id}"> Modifier</a>
-            </p>
-        </c:forEach>
-    
-	<h3>Statistiques</h3>
+	<h2>Statistiques</h2>
         <p>Chiffre d'affaire de MaCaL Entreprise selon  
            <select name="choixGraph" id="choix">
            <option value="zoneGeo">La zone géographique</option>

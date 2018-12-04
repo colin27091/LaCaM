@@ -39,7 +39,7 @@ public class adminControl extends HttpServlet {
         try{
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             List<Product> products = dao_product.getProducts();
-            request.setAttribute("products", products.size());
+            request.setAttribute("products", products);
         }catch (Exception ex){
             request.setAttribute("error_message", ex);
         }
