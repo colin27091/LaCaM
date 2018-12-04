@@ -72,6 +72,7 @@
             <input type="hidden" name="action" value="create">
             <input type="submit" name="action" value="Valider">
         </p>
+        <br></br>
             <input type="hidden" name="action" value="create">
             <input type="submit" value="Afficher" onClick="AfficherMasquer()">
             <div id="piechart" style="width: 900px; height: 500px; display: none;"></div>
