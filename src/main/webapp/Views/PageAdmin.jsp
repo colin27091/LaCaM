@@ -68,13 +68,16 @@
            <option value="cateArticle">La catégorie d'articles</option>
            <option value="clients">Les clients</option>      
            </select>
-             de <input name="dateDebut">< à <input name="dateFin">
+             de <input name="dateDebut"> à <input name="dateFin">
             <input type="hidden" name="action" value="create">
             <input type="submit" name="action" value="Valider">
         </p>
             <input type="hidden" name="action" value="create">
             <input type="submit" value="Afficher" onClick="AfficherMasquer()">
             <div id="piechart" style="width: 900px; height: 500px; display: none;"></div>
+            <br></br>
+            <input type="hidden" name="action" value="create">
+            <input type="submit" value="Se Deconnecter">
         
 
         
