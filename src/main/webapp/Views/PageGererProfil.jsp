@@ -40,6 +40,7 @@
                 </br>
                 </br>
                 <input name="action" value="Sauvegarder" type="SUBMIT">
+                <input name="action" value="Annuler" type="SUBMIT">
             </form>
     </body>
 </html>
