@@ -41,6 +41,13 @@ public class AppListener implements ServletContextListener {
 		boolean result = false;
 
 		DAO dao = new DAO(DataSourceFactory.getDataSource());
+		try {
+			List<String> allCodes = dao.getZip_code();
+			Logger.getLogger("loginControl").log(Level.INFO, "Database already exists");
+			result = true;
+		} catch (SQLException ex) {
+			Logger.getLogger("loginControl").log(Level.INFO, "Database does not exist");
+		}
 		return result;
 	}
 
@@ -51,17 +58,17 @@ public class AppListener implements ServletContextListener {
 			}
 		};
 		
-		Logger.getLogger("DiscountEditor").log(Level.INFO, "Creating databse from SQL script");
+		Logger.getLogger("loginControl").log(Level.INFO, "Creating database from SQL script");
 		try {
 			Connection connection = DataSourceFactory.getDataSource().getConnection();
 			int result = ij.runScript(connection, this.getClass().getResourceAsStream("SQL.sql"), "UTF-8", System.out, "UTF-8");
 			if (result == 0) {
-				Logger.getLogger("DiscountEditor").log(Level.INFO, "Database succesfully created");
+				Logger.getLogger("loginControl").log(Level.INFO, "Database succesfully created");
 			} else {
-				Logger.getLogger("DiscountEditor").log(Level.SEVERE, "Errors creating database");
+				Logger.getLogger("loginControl").log(Level.SEVERE, "Errors creating database");
 			}
 		} catch (UnsupportedEncodingException | SQLException e) {
-			Logger.getLogger("DiscountEditor").log(Level.SEVERE, null, e);
+			Logger.getLogger("loginControl").log(Level.SEVERE, null, e);
 		}
 
 	}
