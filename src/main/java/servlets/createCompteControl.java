@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -24,6 +25,8 @@ import model.tables.Customer;
  */
 public class createCompteControl extends HttpServlet {
 
+    
+    List<String> codes = new ArrayList<String>();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -65,7 +68,8 @@ public class createCompteControl extends HttpServlet {
                                 if(!att.equals("zip")){
                                     request.setAttribute(att, request.getParameter(att));
                                 } else {
-                                    request.setAttribute("codes", dao.getZip_code());
+                                    codes = dao.getZip_code();
+                                    request.setAttribute("codes", codes);
                                 }
                                 
                             }
@@ -114,6 +118,7 @@ public class createCompteControl extends HttpServlet {
                     
         }catch (Exception ex){
             request.setAttribute("error", "L'id et le crédit limite sont des nombres");
+
             request.getRequestDispatcher(views).forward(request, response);
 
         }
