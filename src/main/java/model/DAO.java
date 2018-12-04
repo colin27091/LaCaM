@@ -78,33 +78,10 @@ public class DAO {
         return email.equals(emailAdmin) && mdp.equals(mdpAdmin);
     }
     
-    public List<Product> getProducts() throws SQLException{
-        List<Product> products = null;
-        String sql = "SELECT * FROM PRODUCT";
-        try (Connection connection = ds.getConnection(); 
-            PreparedStatement stmt = connection.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-                            
-                            Product product = new Product();
-                            product.setProduct_id(rs.getInt("product_id"));//clé primaire
-                            product.setManufacturer_id(rs.getInt("manufacturer_id"));//clé etrangère (manufacturer_id)
-                            product.setProduct_code(rs.getString("product_code"));//clé etrangère (product_code)
-                            product.setPurchase_cost(Double.parseDouble(rs.getString("purchase_cost")));
-                            product.setQuantity_on_hand(rs.getInt("quantity_on_hand"));
-                            product.setMarkup(Double.parseDouble(rs.getString("markup")));
-                            product.setAvailable(rs.getString("available"));
-                            product.setDescription(rs.getString("description"));
-                            products.add(product);
-                        }
-        }
-	
-        return products;
-    }
     
 
     public List<Purchase> getPurchaseOfCustomer(int customer_id) throws SQLException{
-        List<Purchase> purchases = null;
+        List<Purchase> purchases = new ArrayList<Purchase>();;
         String sql = "SELECT * FROM PURCHASE WHERE CUSTOMER_ID="+customer_id;
         try(Connection connection =ds.getConnection();
                 PreparedStatement stmt = connection.prepareStatement(sql)){
@@ -119,12 +96,26 @@ public class DAO {
                 purchase.setSales_dates(rs.getString("sales_dates"));
                 purchase.setShipping_cost(rs.getFloat("shipping_cost"));
                 purchase.setShipping_date(rs.getString("shipping_date"));
+                purchases.add(purchase);
 
             }
         }
         return purchases;
     }
     
+    
+    public List<String> getZip_code() throws SQLException{
+        List<String> codes = new ArrayList<String>();;
+        String sql = "SELECT * FROM MICRO_MARKET";
+        try(Connection connection =ds.getConnection();
+                PreparedStatement stmt = connection.prepareStatement(sql)){
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                codes.add(rs.getString("zip_code"));
+            }
+        }
+        return codes;
+    }
     
     
 }
