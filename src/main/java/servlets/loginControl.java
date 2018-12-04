@@ -48,7 +48,7 @@ public class loginControl extends HttpServlet {
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
             switch (action) {
-		case "connect":
+		case "Se connecter":
                     System.out.println(email + "     " + mdp);
                     if(dao.isAdmin(email, mdp)){
                         System.out.println("is admin");
@@ -63,6 +63,9 @@ public class loginControl extends HttpServlet {
                         }
                         
                     }
+                    break;
+                case "Creer un compte":
+                    response.sendRedirect("/MaCaL/createCompteControl");
                     break;
                 default: request.getRequestDispatcher(views).forward(request, response);
             }

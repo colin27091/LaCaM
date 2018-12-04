@@ -51,7 +51,7 @@ public class DAO_product {
         return products;
     }
     
-    public void addProduct(Product product){
+    public boolean addProduct(Product product){
         String sql = "INSERT INTO PRODUCT(PRODUCT_ID, MANUFACTURER_ID, PRODUCT_CODE, PURCHASE_COST, QUANTITY_ON_HAND, MARKUP, AVAILABLE, DESCRIPTION) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
         try(Connection connection = ds.getConnection();
@@ -65,8 +65,9 @@ public class DAO_product {
                 stmt.setString(7, product.getAvailable());
                 stmt.setString(8, product.getDescription());
                 stmt.executeUpdate();
+                return true;
         }catch (Exception ex){
-            
+            return false;
         }
         
  
