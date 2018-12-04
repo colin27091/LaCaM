@@ -39,6 +39,7 @@ public class createCompteControl extends HttpServlet {
         
         String action = request.getParameter("action");
         action = (action == null) ? "" : action;
+        System.out.println(action);
         
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
@@ -47,18 +48,30 @@ public class createCompteControl extends HttpServlet {
                 case "Valider":
                     Customer customer = new Customer();
                     Enumeration<String> enume = request.getParameterNames();
+                    boolean erreur = false;
                     while(enume.hasMoreElements()){
                         if(request.getParameter(enume.nextElement()).equals("")){
-                            Enumeration<String> enumeration = request.getParameterNames();
-                            while(enumeration.hasMoreElements()){
-                                String att = enumeration.nextElement();
-                                request.setAttribute(att, request.getParameter(att));
-                            }
+                            erreur = true;
                             request.setAttribute("error", "Tout les champs doivent être rempli");
-                            request.getRequestDispatcher(views).forward(request, response);
+                            
                         }
                     }
                     
+                   if(erreur){
+                       Enumeration<String> enumeration = request.getParameterNames();
+                            while(enumeration.hasMoreElements()){
+                                String att = enumeration.nextElement();
+                                System.out.println(att);
+                                if(!att.equals("zip")){
+                                    request.setAttribute(att, request.getParameter(att));
+                                } else {
+                                    request.setAttribute("codes", dao.getZip_code());
+                                }
+                                
+                            }
+                       request.getRequestDispatcher(views).forward(request, response);
+                   } else {
+                       
                    
                     customer.setCustomer_id(Integer.parseInt(request.getParameter("customer_id")));
                     customer.setName(request.getParameter("name"));
@@ -73,20 +86,26 @@ public class createCompteControl extends HttpServlet {
                     customer.setCredit_limit(Integer.parseInt(request.getParameter("credit_limit")));
                     customer.setDiscount_code(request.getParameter("discount_code"));
                     
-                    
                     if(dao_client.createClient(customer)){
                         response.sendRedirect("/MaCaL/loginControl");
                     } else {
                         Enumeration<String> enumeration = request.getParameterNames();
                             while(enumeration.hasMoreElements()){
                                 String att = enumeration.nextElement();
-                                request.setAttribute(att, request.getParameter(att));
+                                if(!att.equals("zip")){
+                                    request.setAttribute(att, request.getParameter(att));
+                                }
+                                
                             }
+                            
                         request.setAttribute("error", "Un client possède déjà cet ID");
                         request.getRequestDispatcher(views).forward(request, response);
                     }
+                   }
                     
-                    
+                    break;
+                case "Annuler":
+                    response.sendRedirect("/MaCaL/loginControl");
                     break;
                 default:
                     request.setAttribute("codes", dao.getZip_code());
