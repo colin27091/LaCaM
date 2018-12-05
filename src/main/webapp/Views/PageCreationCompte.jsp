@@ -79,7 +79,7 @@
             </div>
         </form>
                 
-        <p>${error}</p>
+        <p style="color: red;text-align: center">${error}</p>
         
     </body>
 </html>
