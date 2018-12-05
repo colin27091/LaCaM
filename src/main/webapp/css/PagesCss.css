@@ -16,9 +16,12 @@ form#log{
 	background-color : #4169E1;
 }
 h1{
-    color : red;
+    color : black;
 }
-
+.centrer{
+    margin: auto;
+    
+}
 #menu{
 	font-family: 'Coming Soon', cursive;
 	font-size: 30px;
