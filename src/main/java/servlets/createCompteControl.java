@@ -44,30 +44,35 @@ public class createCompteControl extends HttpServlet {
         action = (action == null) ? "" : action;
         System.out.println(action);
         
+        
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
             DAO_client dao_client = new DAO_client(DataSourceFactory.getDataSource());
             switch (action){
                 case "Valider":
                     Customer customer = new Customer();
-                    Enumeration<String> enume = request.getParameterNames();
+                    
+                    Enumeration<String> enum1 = request.getParameterNames();
                     boolean erreur = false;
-                    while(enume.hasMoreElements()){
-                        if(request.getParameter(enume.nextElement()).equals("")){
+                    while(enum1.hasMoreElements()){
+                        if(request.getParameter(enum1.nextElement()).equals("")){
                             erreur = true;
+                            System.out.print(erreur);
                             request.setAttribute("error", "Tout les champs doivent être rempli");
                             
                         }
                     }
                     
                    if(erreur){
-                       Enumeration<String> enumeration = request.getParameterNames();
-                            while(enumeration.hasMoreElements()){
-                                String att = enumeration.nextElement();
+                       System.out.println("il y a une erreur");
+                            Enumeration<String> enum2 = request.getParameterNames();
+                            while(enum2.hasMoreElements()){
+                                String att = enum2.nextElement();
                                 System.out.println(att);
-                                if(!att.equals("zip")){
+                                if(!att.equals("ZIP")){
                                     request.setAttribute(att, request.getParameter(att));
                                 } else {
+                                    
                                     codes = dao.getZip_code();
                                     request.setAttribute("codes", codes);
                                 }
@@ -76,8 +81,9 @@ public class createCompteControl extends HttpServlet {
                        request.getRequestDispatcher(views).forward(request, response);
                    } else {
                        
-                   
-                    customer.setCustomer_id(Integer.parseInt(request.getParameter("customer_id")));
+                   try{
+                       
+                      customer.setCustomer_id(Integer.parseInt(request.getParameter("customer_id")));
                     customer.setName(request.getParameter("name"));
                     customer.setAddressline1(request.getParameter("addressline1"));
                     customer.setAddressline2(request.getParameter("addressline2"));
@@ -88,7 +94,7 @@ public class createCompteControl extends HttpServlet {
                     customer.setFax(request.getParameter("fax"));
                     customer.setEmail(request.getParameter("email"));
                     customer.setCredit_limit(Integer.parseInt(request.getParameter("credit_limit")));
-                    customer.setDiscount_code(request.getParameter("discount_code"));
+                    customer.setDiscount_code(request.getParameter("discount_code")); 
                     
                     if(dao_client.createClient(customer)){
                         response.sendRedirect("/MaCaL/loginControl");
@@ -105,7 +111,30 @@ public class createCompteControl extends HttpServlet {
                         request.setAttribute("error", "Un client possède déjà cet ID");
                         request.getRequestDispatcher(views).forward(request, response);
                     }
+                    
+                    
+                    
+                   } catch (Exception ex){
+                       Enumeration<String> enumeration = request.getParameterNames();
+                       request.setAttribute("error", "L'id et la limite de crédit doivent être des nombres");
+                       while(enumeration.hasMoreElements()){
+                                String att = enumeration.nextElement();
+                                System.out.println(att);
+                                if(!att.equals("zip")){
+                                    request.setAttribute(att, request.getParameter(att));
+                                } else {
+                                    codes = dao.getZip_code();
+                                    request.setAttribute("codes", codes);
+                                }
+                                
+                            }
+                       
+                      
                    }
+                   }
+                    
+                    
+                    
                     
                     break;
                 case "Annuler":
@@ -117,7 +146,7 @@ public class createCompteControl extends HttpServlet {
             }
                     
         }catch (Exception ex){
-            request.setAttribute("error", "L'id et le crédit limite sont des nombres");
+            request.setAttribute("error", "Erreur de base de donnée");
 
             request.getRequestDispatcher(views).forward(request, response);
 

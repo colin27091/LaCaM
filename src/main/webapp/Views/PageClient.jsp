@@ -12,23 +12,37 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Catalogue</title>
     </head>
-    <body>
-        <h1>MaCaL</h1>
+    <body style="background-color: gray">
+        <h1 style="text-align: center; background-color: #4169E1">MaCaL</h1>
         
-        <ul id="menu">
-        <li>Mes Anciennes Commandes</li>
-        <li>Mon Panier</li>
+        <ul>
+            <input name="action" value="Mes commandes" type="SUBMIT" class="btn btn-primary">
+            <input name="action" value="Gérer le profil" type="SUBMIT" class="btn btn-primary">
+            <input name="action" value="Déconnexion" type="SUBMIT" class="btn btn-primary">
         </ul>
 
-        <h2>Vous etes connecté <%=customer.getName()%></h2>
-        <input type="hidden" name="action" value="more">
-	<input type="submit" value="En savoir plus">
-       
+        <h2 style="text-align: left">Vous etes connecté <%=customer.getName()%></h2
+        
+
         <c:forEach var="product" items="${products}">
-            <p>${product.getDescription()}</p>
+            <form class="container">  
+                <div class="form-group col-md-6">
+                    <div>
+                        <p>Produit: ${product.getDescription()}</p>
+                    </div>
+                    <div>
+                        <p>Prix unitaire: ${product.getPurchase_cost()}€</p>
+                    </div>
+                    <div>
+                        <p>Quantité disponible: ${product.getQuantity_on_hand()} Pcs</p>
+                    </div>
+                </div>
+            </form>
         </c:forEach>
+        
 
        
         <%-- Oh Mofid je t'ai mis à disposition une expression EL qui s'appele products qui est une liste de tout les produits de la base
