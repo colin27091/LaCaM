@@ -7,8 +7,10 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,7 @@ import model.tables.Product;
  *
  * @author c
  */
+@WebServlet(name = "adminControl", urlPatterns = {"/adminControl"})
 public class adminControl extends HttpServlet {
 
     /**
@@ -36,10 +39,14 @@ public class adminControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String views = "Views/PageAdmin.jsp";
+        String views = "/Views/PageAdmin.jsp";
         
         String action = request.getParameter("action");
         action = (action == null ) ? "" : action;
+
+        action = (action == null) ? "" : action;
+        System.out.println("ok");
+        
         try{
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             DAO_manufacturer dao_manufacturer = new DAO_manufacturer(DataSourceFactory.getDataSource());
@@ -72,10 +79,14 @@ public class adminControl extends HttpServlet {
             
             
             
+            
+            
         }catch (Exception ex){
             request.setAttribute("error_message", ex);
         }
+
         
+        request.getRequestDispatcher(views).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

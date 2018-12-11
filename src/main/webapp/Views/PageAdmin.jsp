@@ -1,63 +1,16 @@
-<%-- 
-    Document   : PageAdmin
-    Created on : 27 nov. 2018, 16:19:21
-    Author     : leolo
---%>
-
  <%@page import="model.tables.Customer"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.List"%>
 <%@page import="model.tables.Product"%>
 <%List<Product> products = (List<Product>) request.getAttribute ( "products" ); %>
 <%Customer customer = (Customer) request.getAttribute( "customer" ); %>   
-<%@page import="model.tables.Product"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Espace Admin</title>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
         
-
-        function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-        var options = {
-          title: 'My Daily Activities'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-      
-      function AfficherMasquer(){
-        divInfo = document.getElementById('piechart');
- 
-        if (divInfo.style.display == 'none')
-            divInfo.style.display = 'block';
-        else{
-            divInfo.style.display = 'none';
-        }
-    }
-      </script>
     </head>
-
     <body>
         <h1>Macal</h1>
 
