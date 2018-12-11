@@ -53,7 +53,12 @@ public class adminControl extends HttpServlet {
             DAO_client dao_client = new DAO_client(DataSourceFactory.getDataSource());
             
             List<Customer> customers = dao_client.getCustomers();
+            
             request.setAttribute("customers", customers);
+            
+            
+            
+            
             List<Product> products = dao_product.getProducts();
             request.setAttribute("products", products);
             List<Manufacturer> manufacturers = dao_manufacturer.getManufacturers();

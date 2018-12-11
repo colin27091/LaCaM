@@ -46,6 +46,11 @@ public class DAO_client {
                c.setEmail(rs.getString("email"));
                c.setCredit_limit(rs.getInt("credit_limit"));
                
+               
+               
+               c.setSommeTotale(this.howManySpend(c));
+               
+               
                customers.add(c);
                
                
@@ -79,5 +84,37 @@ public class DAO_client {
         }
         
     }
+    
+    
+    public float howManySpend(Customer customer) throws SQLException{
+        
+        float sommeTotale = 0;
+        
+        String sql1 = "SELECT SUM(PURCHASE_COST) FROM PRODUCT INNER JOIN PURCHASE_ORDER ON PRODUCT.PRODUCT_ID = PURCHASE_ORDER.PRODUCT_ID WHERE CUSTOMER_ID="+customer.getCustomer_id();
+        //somme depensé dans les produit
+        String sql2 = "SELECT SUM(SHIPPING_COST) FROM PURCHASE_ORDER WHERE CUSTOMER_ID="+customer.getCustomer_id();
+        //somme depensé en frais de port
+        
+        try(Connection connection = ds.getConnection();
+                PreparedStatement stmt1 = connection.prepareStatement(sql1);
+                PreparedStatement stmt2 = connection.prepareStatement(sql2)){
+            ResultSet rs = stmt1.executeQuery();
+            ResultSet rs2 = stmt2.executeQuery();
+            while(rs.next()){
+                sommeTotale += rs.getFloat("1");
+            }
+            
+            while(rs2.next()){
+                sommeTotale += rs.getFloat("1");
+            }
+            
+        } catch (Exception ex){
+            
+        }
+        
+        
+        return sommeTotale;
+    }
+    
     
 }

@@ -16,6 +16,9 @@ public class Customer {
     String email;
     int credit_limit;
     
+    float sommeTotale;
+    
+    
     public Customer(){
     }
     
@@ -44,8 +47,14 @@ public class Customer {
     public String toString() {
         return "Customer{" + "customer_id=" + customer_id + ", name=" + name + ", city=" + city + ", email=" + email + '}';
     }
-    
-    
+
+    public float getSommeTotale() {
+        return sommeTotale;
+    }
+
+    public void setSommeTotale(float sommeTotale) {
+        this.sommeTotale = sommeTotale;
+    }   
 
     public int getCustomer_id() {
         return customer_id;

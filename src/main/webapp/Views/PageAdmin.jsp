@@ -91,7 +91,7 @@
                     <td>${customer.getCustomer_id()}</td>
                     <td>${customer.getName()}</td>
                     <td>${customer.getEmail()}</td>
-                    <td>${customer}</td>
+                    <td>${customer.getSommeTotale()}</td>
                     </tr>
                 </c:forEach>
         </tbody>
