@@ -1,9 +1,3 @@
-<%-- 
-    Document   : PageConnexion
-    Created on : 27 nov. 2018, 16:18:38
-    Author     : leolo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,7 +21,7 @@
             <div class="form-group">
                 <div class="form-group col-md-4">
                 <label for="InputPassword">Mot de Passe</label>
-                <input name="mdp" class="form-control"  placeholder="Mot de Passe">
+                <input name="mdp" type="Password" class="form-control"  placeholder="Mot de Passe">
                 </div>
             </div>
             <div class="form-group">

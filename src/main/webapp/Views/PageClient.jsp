@@ -15,8 +15,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Catalogue</title>
     </head>
-    <body style="background-color: gray">
-        <h1 style="text-align: center; background-color: #4169E1">MaCaL</h1>
+    <body style="background-color: grey" >
+        <h1 style="text-align: center" style="background-color: grey">MaCaL</h1>
         
         <ul>
             <input name="action" value="Mes commandes" type="SUBMIT" class="btn btn-primary">
@@ -24,26 +24,28 @@
             <input name="action" value="Déconnexion" type="SUBMIT" class="btn btn-primary">
         </ul>
 
-        <h2 style="text-align: left">Vous etes connecté <%=customer.getName()%></h2
-        
-
-        <c:forEach var="product" items="${products}">
-            <form class="container">  
-                <div class="form-group col-md-6">
-                    <div>
-                        <p>Produit: ${product.getDescription()}</p>
-                    </div>
-                    <div>
-                        <p>Prix unitaire: ${product.getPurchase_cost()}€</p>
-                    </div>
-                    <div>
-                        <p>Quantité disponible: ${product.getQuantity_on_hand()} Pcs</p>
-                    </div>
-                </div>
-            </form>
-        </c:forEach>
-        
-
+        <h2 style="text-align: left"  style="background-color: grey" >Vous etes connecté <%=customer.getName()%></h2
+    <h3 id="list-item-2" >Gestion des produits</h3>
+        <table class="table table-bordered table-light">
+        <thead>
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Prix Unitaire</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Achat</th>
+        </tr>
+        </thead>
+        <tbody>
+             <c:forEach var="product" items="${products}">
+                <tr>
+                <td>${product.getDescription()}</td>
+                <td>${product.getPurchase_cost()} €</td>
+                <td>${product.getQuantity_on_hand()}</td>
+                <td><input type="submit" name="action" value="Commander" class="btn btn-primary"></td>
+                </tr>
+             </c:forEach>
+        </tbody>
+        </table>        
        
         <%-- Oh Mofid je t'ai mis à disposition une expression EL qui s'appele products qui est une liste de tout les produits de la base
         tu peut t'en servir sous la forme ${products} en utilisant tout les paramètre present dans la classe product
