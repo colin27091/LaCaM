@@ -2,7 +2,10 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.sql.DataSource;
 import model.tables.Customer;
 
@@ -16,11 +19,43 @@ public class DAO_client {
     }
     
     
-    public boolean clientIsOK(Customer customer){
-        String sql ="";
-        return true;
-    }
-    
+   
+   public List<Customer> getCustomers() throws SQLException {
+       List<Customer> customers = new ArrayList<Customer>();
+       
+       String sql = "SELECT * FROM CUSTOMER";
+       
+       try(Connection connection = ds.getConnection();
+               PreparedStatement stmt = connection.prepareStatement(sql)){
+           ResultSet rs = stmt.executeQuery();
+           
+           while(rs.next()){
+               
+               Customer c = new Customer();
+               
+               c.setCustomer_id(rs.getInt("customer_id"));
+               c.setDiscount_code(rs.getString("discount_code"));
+               c.setZip(rs.getString("zip"));
+               c.setName(rs.getString("name"));
+               c.setAddressline1(rs.getString("addressline1"));
+               c.setAddressline2(rs.getString("addressline2"));
+               c.setCity(rs.getString("city"));
+               c.setState(rs.getString("state"));
+               c.setPhone(rs.getString("phone"));
+               c.setFax(rs.getString("fax"));
+               c.setEmail(rs.getString("email"));
+               c.setCredit_limit(rs.getInt("credit_limit"));
+               
+               customers.add(c);
+               
+               
+               
+           }
+       }
+       
+       return customers;
+   }
+
     public boolean createClient(Customer customer) throws SQLException{
         String sql = "INSERT INTO APP.CUSTOMER(CUSTOMER_ID, DISCOUNT_CODE, ZIP, NAME, ADDRESSLINE1, ADDRESSLINE2, CITY, STATE, PHONE, FAX, EMAIL, CREDIT_LIMIT) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try(Connection connection = ds.getConnection();

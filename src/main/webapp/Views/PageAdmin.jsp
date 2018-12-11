@@ -2,8 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.List"%>
 <%@page import="model.tables.Product"%>
+<%@page import="model.tables.Customer"%>
 <%List<Product> products = (List<Product>) request.getAttribute ( "products" ); %>
 <%Customer customer = (Customer) request.getAttribute( "customer" ); %>   
+<%List<Customer> customers = (List<Customer>) request.getAttribute("customers"); %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -83,6 +86,7 @@
                 </c:forEach>
         </tbody>
         </table>
+
 
        <input type="submit" value="Se Deconnecter" class="btn btn-primary">
     </body>

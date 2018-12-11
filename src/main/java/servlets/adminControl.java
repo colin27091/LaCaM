@@ -14,9 +14,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.DAO_client;
 import model.DAO_manufacturer;
 import model.DAO_product;
 import model.DataSourceFactory;
+import model.tables.Customer;
 import model.tables.Manufacturer;
 import model.tables.Product;
 
@@ -43,13 +45,15 @@ public class adminControl extends HttpServlet {
         
         String action = request.getParameter("action");
         action = (action == null ) ? "" : action;
-
-        action = (action == null) ? "" : action;
-        System.out.println("ok");
+        System.out.println(action);
         
         try{
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             DAO_manufacturer dao_manufacturer = new DAO_manufacturer(DataSourceFactory.getDataSource());
+            DAO_client dao_client = new DAO_client(DataSourceFactory.getDataSource());
+            
+            List<Customer> customers = dao_client.getCustomers();
+            request.setAttribute("customers", customers);
             List<Product> products = dao_product.getProducts();
             request.setAttribute("products", products);
             List<Manufacturer> manufacturers = dao_manufacturer.getManufacturers();
@@ -72,14 +76,7 @@ public class adminControl extends HttpServlet {
                 default: request.getRequestDispatcher(views).forward(request, response);
                     
             }
-            
-            
-            
-            
-            
-            
-            
-            
+           
             
         }catch (Exception ex){
             request.setAttribute("error_message", ex);
