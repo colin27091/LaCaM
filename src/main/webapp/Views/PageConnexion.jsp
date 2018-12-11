@@ -1,9 +1,3 @@
-<%-- 
-    Document   : PageConnexion
-    Created on : 27 nov. 2018, 16:18:38
-    Author     : leolo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
