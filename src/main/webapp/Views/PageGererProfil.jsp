@@ -9,40 +9,82 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Gérer Produits</title>
-    </head>
-    <body>
-        <h1>Bienvenue sur la page de gestion de votre profil</h1>
-            <form method="POST">
-		<label>Prénom : <input name="prenom" value = ${customer.getName()}></label>
-                </br>
-                </br>
-                <label>Adresse : <input name="adresse" value = ${customer.getAddressline1()}></label>
-                </br>
-                </br>
-		<label>Complément d'adresse : <input name="complement" value = ${customer.getAddressline2()}></label>
-                </br>
-                </br>
-                <label>Ville : <input name="ville" value = ${customer.getCity()}></label>
-                </br>
-                </br>
-                <label>Etat : <input name="etat" value = ${customer.getState()}></label>
-                </br>
-                </br>
-                <label>Téléphone : <input name="telephone" value = ${customer.getPhone()}></label>
-                </br>
-                </br>
-                <label>Fax : <input name="fax" value = ${customer.getFax()}></label>
-                </br>
-                </br>
-                <label>Email : <input name="email" ${customer.getEmail()}></label>
-                </br>
-                </br>
-                <input name="action" value="Sauvegarder" type="SUBMIT">
-                <input name="action" value="Annuler" type="SUBMIT">
-                </br>
+    </head>  
+     <body style="background-color: gray">
+        <h1 style="text-align: center">Gérer les informations du compte</h1>
+        </br>
+        </br>
+        <form class="container">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="inputID">ID</label>
+                    <input  name="customer_id"  class="form-control"  value=${customer.getCustomer_id()}>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputPrenom">Prénom</label>
+                    <input name="name"  class="form-control" value=${customer.getName()}>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label for="inputAdresse">Adresse</label>
+                    <input name="addressline1"  class="form-control" value=${customer.getAddressline1()}>
+            </div>
+            <div class="form-group">
+                    <label for="inputAddresse2">Complément d'adresse</label>
+                    <input name="addressline2"   class="form-control"  value=${customer.getAddressline2()}>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">Ville</label>
+                    <input name="city" class="form-control" value=${customer.getCity()}>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputzip">Code Postal</label>
+                        <select name="ZIP" class="form-control" >
+                            <c:forEach var="code" items="${codes}">
+                                <option value=${code}>${code}</option>
+                            </c:forEach>
+                        </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputEtat">Etat</label>
+                    <input name="state" class="form-control" value=${customer.getState()}>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="inputPhone">Téléphone</label>
+                    <input  name="phone" class="form-control" value=${customer.getPhone()}>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputFAX">FAX</label>
+                    <input name="fax" class="form-control" value=${customer.getFax()}>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputEmail">Email</label>
+                    <input name="email"  class="form-control" value=${customer.getEmail()}>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="inputClimit">Limite de crédit</label>
+                    <input name="credit_limit" class="form-control" value=${customer.getCredit_limit()}>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputDcode">Code Promo</label>
+                    <input name="discount_code" class="form-control" value=${customer.getDiscount_code()}>
+                </div>
+            </div>
+            <div>
+                <input type="submit" name="action" value="Valider les modifications" class="btn btn-primary"/>
+                <input type="submit" name="action" value="Annuler les modifications" class="btn btn-primary"/>
+            </div>
+        </form>
+                
+        <p style="color: red;text-align: center">${error}</p>
+        
+    </body>   
 
-            </form>
-    </body>
 </html>

@@ -20,19 +20,19 @@
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label for="inputIDP">ID du produit</label>
-                    <input  name="product_id"  class="form-control "placeholder="ID produit" value=${product_id}>
+                    <input  name="product_id"  class="form-control " placeholder="ID produit" value=${product_id}>
                 </div>
                 <div class="form-group col-md-4">
                 <label for="ZIP">ID de Manufacture</label>
-                        <select name="ZIP" class="form-control" >
-                            <c:forEach var="code" items="${codes}">
-                                <option value=${code}>${code}</option>
+                        <select name="manufacturer" class="form-control" >
+                            <c:forEach var="code" items="${manufacturers}">
+                                <option value=${manufacturer}>${manufacturer}</option>
                             </c:forEach>
                         </select>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputProd">Code du produit</label>
-                    <input name="product_code"  class="form-control" id="inputAdresse" value=${product_code}>
+                    <input name="product_code"  class="form-control"  value=${product_code}>
                 </div>
             </div>
             <div class="form-row">
