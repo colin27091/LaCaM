@@ -7,22 +7,18 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO_manufacturer;
-import model.DAO_product;
-import model.DataSourceFactory;
-import model.tables.Manufacturer;
-import model.tables.Product;
 
 /**
  *
  * @author c
  */
-public class adminControl extends HttpServlet {
+@WebServlet(name = "createProductControl", urlPatterns = {"/createProductControl"})
+public class createProductControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,21 +32,11 @@ public class adminControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String views = "Views/PageAdmin.jsp";
         
-        try{
-            DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
-            DAO_manufacturer dao_manufacturer = new DAO_manufacturer(DataSourceFactory.getDataSource());
-            List<Product> products = dao_product.getProducts();
-            request.setAttribute("products", products);
-            List<Manufacturer> manufacturers = dao_manufacturer.getManufacturers();
-            request.setAttribute("manufacturers", manufacturers);
-            
-            
-        }catch (Exception ex){
-            request.setAttribute("error_message", ex);
-        }
-        request.getRequestDispatcher(views).forward(request, response);
+        
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

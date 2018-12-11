@@ -14,6 +14,10 @@ public class Manufacturer {
     String email;
     String rep;
 
+    public Manufacturer(){
+        
+    }
+    
     public Manufacturer(int manufacturer_id) {
         this.manufacturer_id = manufacturer_id;
     }
