@@ -12,13 +12,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Espace Admin</title>
     </head>
-    <body>
+    <body style="background-color: gray">
         <h1>Macal</h1>
 
         <div id="list-example" class="list-group">
   <a class="list-group-item" href="#list-item-1">Statistiques</a>
   <a class="list-group-item" href="#list-item-2">Gérer Produits</a>
-  <a class="list-group-item" href="#list-item-3">Item 3</a>
+  <a class="list-group-item" href="#list-item-3">Clients</a>
 </div>
 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
   <h2 id="list-item-1">Statistiques</h2>
@@ -31,6 +31,13 @@
              de <input name="dateDebut"> à <input name="dateFin">
             <input type="submit" name="action" value="Valider">
         </p>
+        
+        </div>
+                <input type="submit" value="Afficher" onClick="AfficherMasquer()" class="btn btn-primary">
+                <div id="piechart" style="width: 900px; height: 500px; display: none;"></div>
+                    
+        </div>
+        
     <h3 id="list-item-2">Gérer Produits</h3>
         <table class="table table-bordered table-dark">
         <thead>
@@ -43,7 +50,7 @@
         </thead>
         <tbody>
              <c:forEach var="product" items="${products}">
-                 <tr>
+                <tr>
                 <td>${product.getDescription()}</td>
                 <td>${product.getPurchase_cost()} €</td>
                 <td>${product.getQuantity_on_hand()}</td>
@@ -52,33 +59,31 @@
                 </tr>
              </c:forEach>
         </tbody>
-</table>
-  <h4 id="list-item-3">Item 3</h4>
-  <p>...</p>
-  <h4 id="list-item-4">Item 4</h4>
-  <p>...</p>
-</div>
+        </table>
+        <input type="submit" name="action" value="Créer Nouveau Produit" class="btn btn-primary"> 
         
-        
-        
+    <h4 id="list-item-3">Clients</h4>
+        <table class="table table-bordered table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Montant Dépensé</th>
+        </tr>
+        </thead>
+        <tbody>
+                <c:forEach var="product" items="${customers}">
+                    <tr>
+                    <td>${customer.getCustomer_id()}</td>
+                    <td>${customer.getName()}</td>
+                    <td>${customer.getEmail()}</td>
+                    <td>${customer}</td>
+                    </tr>
+                </c:forEach>
+        </tbody>
+        </table>
 
-        <br></br>
-
-            <input type="submit" value="Afficher" onClick="AfficherMasquer()">
-            <div id="piechart" style="width: 900px; height: 500px; display: none;"></div>
-            <br></br>
-            <input type="hidden" name="action" value="create">
-            <input type="submit" value="Se Deconnecter">    
-  </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <p>deofkpefkozepdokzdpozk</p>
-
-    </div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-          <p>deofkpefkozepdokzdpozk</p>
-      </div>
-</div>
-       <input type="submit" name="action" value="Page Creation Produit"> 
-
+       <input type="submit" value="Se Deconnecter" class="btn btn-primary">
     </body>
 </html>
