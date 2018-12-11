@@ -102,10 +102,11 @@ public class DAO_client {
             ResultSet rs2 = stmt2.executeQuery();
             while(rs.next()){
                 sommeTotale += rs.getFloat("1");
+              
             }
             
             while(rs2.next()){
-                sommeTotale += rs.getFloat("1");
+                sommeTotale += rs2.getFloat("1");
             }
             
         } catch (Exception ex){

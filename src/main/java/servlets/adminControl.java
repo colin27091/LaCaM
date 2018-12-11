@@ -42,10 +42,9 @@ public class adminControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String views = "/Views/PageAdmin.jsp";
-        
         String action = request.getParameter("action");
         action = (action == null ) ? "" : action;
-        System.out.println(action);
+        System.out.println(action.isEmpty());
         
         try{
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
@@ -88,7 +87,6 @@ public class adminControl extends HttpServlet {
         }
 
         
-        request.getRequestDispatcher(views).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
