@@ -33,7 +33,8 @@ public class createProductControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        
+        request.getRequestDispatcher("Views/PageCreationProduit.jsp").forward(request, response);
+                
         
         
         

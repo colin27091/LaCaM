@@ -38,6 +38,8 @@ public class adminControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String views = "Views/PageAdmin.jsp";
         
+        String action = request.getParameter("action");
+        action = (action == null ) ? "" : action;
         try{
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             DAO_manufacturer dao_manufacturer = new DAO_manufacturer(DataSourceFactory.getDataSource());
@@ -46,11 +48,34 @@ public class adminControl extends HttpServlet {
             List<Manufacturer> manufacturers = dao_manufacturer.getManufacturers();
             request.setAttribute("manufacturers", manufacturers);
             
+            System.out.println(action);
+            switch(action){
+                case "Page Creation Produit":
+                    
+                    
+                    System.out.println("passe par la");
+                    response.sendRedirect("/MaCaL/createProductControl");
+                    
+                    
+                    
+                    
+                    
+                    
+                    break;
+                default: request.getRequestDispatcher(views).forward(request, response);
+                    
+            }
+            
+            
+            
+            
+            
+            
             
         }catch (Exception ex){
             request.setAttribute("error_message", ex);
         }
-        request.getRequestDispatcher(views).forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
