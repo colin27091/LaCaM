@@ -16,13 +16,16 @@
         <title>Espace Admin</title>
     </head>
     <body style="background-color: gray">
-        <h1>Macal</h1>
+        <h1 style="text-align: center">Macal</h1>
 
-        <div id="list-example" class="list-group">
-  <a class="list-group-item" href="#list-item-1">Statistiques</a>
-  <a class="list-group-item" href="#list-item-2">Gérer Produits</a>
-  <a class="list-group-item" href="#list-item-3">Clients</a>
-</div>
+  <div id="list-example" style="align-content: center">
+  <a class="btn btn-primary btn-lg btn-block" href="#list-item-1">Statistiques</a>
+  <a class="btn btn-primary btn-lg btn-block" href="#list-item-2">Gérer Produits</a>
+  <a class="btn btn-primary btn-lg btn-block" href="#list-item-3">Clients</a>
+  </div>
+  </br>
+  </br>
+  </br>
 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
   <h2 id="list-item-1">Statistiques</h2>
         <p>Chiffre d'affaire de MaCaL Entreprise selon  
@@ -40,6 +43,9 @@
                 <div id="piechart" style="width: 900px; height: 500px; display: none;"></div>
                     
         </div>
+        </br>
+        </br>
+        </br>
         
     <h3 id="list-item-2">Gérer Produits</h3>
         <table class="table table-bordered table-dark">
@@ -64,6 +70,10 @@
         </tbody>
         </table>
         <input type="submit" name="action" value="Créer Nouveau Produit" class="btn btn-primary"> 
+        </br>
+        </br>
+        </br>
+        
         
     <h4 id="list-item-3">Clients</h4>
         <table class="table table-bordered table-dark">
@@ -76,7 +86,7 @@
         </tr>
         </thead>
         <tbody>
-                <c:forEach var="product" items="${customers}">
+                <c:forEach var="customer" items="${customers}">
                     <tr>
                     <td>${customer.getCustomer_id()}</td>
                     <td>${customer.getName()}</td>
@@ -86,8 +96,11 @@
                 </c:forEach>
         </tbody>
         </table>
-
-
+    </br>
+    <p>
        <input type="submit" value="Se Deconnecter" class="btn btn-primary">
+       </br>        
+    </p>
+
     </body>
 </html>
