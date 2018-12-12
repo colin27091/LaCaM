@@ -44,7 +44,7 @@ public class adminControl extends HttpServlet {
         String views = "/Views/PageAdmin.jsp";
         String action = request.getParameter("action");
         action = (action == null ) ? "" : action;
-        System.out.println(action.isEmpty());
+        System.out.println(action);
         
         try{
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());

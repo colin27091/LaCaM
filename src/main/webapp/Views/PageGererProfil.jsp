@@ -27,6 +27,7 @@
                 <div class="form-group col-md-4">
                     <label for="inputPrenom">Prénom</label>
                     <input name="name"  class="form-control" value=${customer.getName()}>
+                    <p><%=customer.getName()%></p>
                 </div>
             </div>
             <div class="form-group">
@@ -45,7 +46,7 @@
                 <div class="form-group col-md-4">
                     <label for="inputzip">Code Postal</label>
                         <select name="ZIP" class="form-control" >
-                            <option value="cusomer_zip">${customer.getCustomer_id()}</option>
+                            <option value="cusomer_zip">${customer.getZip()}</option>
                             <c:forEach var="code" items="${codes}">
                                 <option value=${code}>${code}</option>
                             </c:forEach>
@@ -84,6 +85,8 @@
                 <input type="submit" name="action" value="Valider les modifications" class="btn btn-primary"/>
                 <input type="submit" name="action" value="Annuler les modifications" class="btn btn-primary"/>
             </div>
+                
+                    <p>${error}</p>
         </form>
                 
         <p style="color: red;text-align: center">${error}</p>

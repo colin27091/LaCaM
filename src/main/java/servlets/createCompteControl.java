@@ -83,7 +83,7 @@ public class createCompteControl extends HttpServlet {
                        
                    try{
                        
-                      customer.setCustomer_id(Integer.parseInt(request.getParameter("customer_id")));
+                    customer.setCustomer_id(Integer.parseInt(request.getParameter("customer_id")));
                     customer.setName(request.getParameter("name"));
                     customer.setAddressline1(request.getParameter("addressline1"));
                     customer.setAddressline2(request.getParameter("addressline2"));

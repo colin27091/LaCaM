@@ -120,5 +120,48 @@ public class DAO_client {
     }
     
     
+    public Customer getCustomer(int id) throws SQLException {
+        
+        Customer c = new Customer();
+               
+        String sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID="+id;
+        
+        try(Connection connection = ds.getConnection();
+                PreparedStatement stmt = connection.prepareStatement(sql)){
+            ResultSet rs = stmt.executeQuery();
+            
+            
+            while(rs.next()){
+                
+                c.setCustomer_id(rs.getInt("customer_id"));
+               c.setDiscount_code(rs.getString("discount_code"));
+               c.setZip(rs.getString("zip"));
+               c.setName(rs.getString("name"));
+               c.setAddressline1(rs.getString("addressline1"));
+               c.setAddressline2(rs.getString("addressline2"));
+               c.setCity(rs.getString("city"));
+               c.setState(rs.getString("state"));
+               c.setPhone(rs.getString("phone"));
+               c.setFax(rs.getString("fax"));
+               c.setEmail(rs.getString("email"));
+               c.setCredit_limit(rs.getInt("credit_limit"));
+               
+            }
+            
+            
+            
+        } catch (Exception ex){
+            
+            
+        }
+        
+        return c;
+    }
+    
+    
+    public void modifProfil(Customer customer){
+        
+    }
+    
     
 }
