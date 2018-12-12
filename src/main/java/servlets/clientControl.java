@@ -16,7 +16,7 @@ import model.tables.Customer;
 import model.tables.Product;
 
 
-@WebServlet(name = "clientControl", urlPatterns = {"/clientControl"})
+//@WebServlet(name = "clientControl", urlPatterns = {"/clientControl"})
 public class clientControl extends HttpServlet {
 
     /**
@@ -30,11 +30,14 @@ public class clientControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
         String views = "Views/PageClient.jsp";
-        response.setContentType("/MaCaL/client");
-        System.out.println(action.isEmpty());
+        //response.setContentType("/MaCaL/client");
+        
+        String action = request.getParameter("action");
+        System.out.println(action);
+        
+        
+        
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
@@ -43,12 +46,16 @@ public class clientControl extends HttpServlet {
             request.setAttribute("customer", customer);
             List<Product> products = dao_product.getProducts();
             request.setAttribute("products", products);
+            request.getRequestDispatcher(views).forward(request, response);
+
+            
+            
+            
         } catch (Exception ex){
             request.setAttribute("error_message", ex);
             request.getRequestDispatcher(views).forward(request, response);
         }
         
-        request.getRequestDispatcher(views).forward(request, response);
         
         
     }

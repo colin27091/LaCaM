@@ -7,6 +7,7 @@
 <%List<Product> products = (List<Product>) request.getAttribute ( "products" ); %>
 <%Customer customer = (Customer) request.getAttribute( "customer" ); %>
 
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -47,9 +48,6 @@
         </tbody>
         </table>        
        
-        <%-- Oh Mofid je t'ai mis à disposition une expression EL qui s'appele products qui est une liste de tout les produits de la base
-        tu peut t'en servir sous la forme ${products} en utilisant tout les paramètre present dans la classe product
-dont ${product.name} et plein d'autres pour faire l'affichage de tout les produits tu n'as qu'a parcourir cette liste <--%>
         
     </body>
 </html>
