@@ -34,6 +34,7 @@ public class clientControl extends HttpServlet {
         
         String views = "Views/PageClient.jsp";
         response.setContentType("/MaCaL/client");
+        System.out.println(action.isEmpty());
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());

@@ -98,7 +98,7 @@
         </table>
     </br>
     <p>
-       <input type="submit" value="Se Deconnecter" class="btn btn-primary">
+       <input type="submit" name="action" value="Se Deconnecter" class="btn btn-primary">
        </br>        
     </p>
 

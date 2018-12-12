@@ -12,18 +12,30 @@
         <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
         <title>Anciennes Commandes</title>
     </head>
-    <body>
+    <body style="background-color: grey">
         <h1>MaCaL</h1>
+        <h2>Commandes de ${customer.getName()}</h2>
+                <table class="table table-bordered table-light">
+        <thead>
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Montant</th>
+        </tr>
+        </thead>
+        <tbody>
+             <c:forEach var="product" items="${products}">
+                <tr>
+                <td>${product.getDescription()}</td>
+                <td>${product.getPurchase_cost()} €</td>
+                <td>${product.getQuantity_on_hand()}</td>
+                <td><input type="submit" name="action" value="Commander" class="btn btn-primary"></td>
+                </tr>
+             </c:forEach>
+        </tbody>
+        </table>
         
-        <ul id="menu">
-        <li>Catalogue</li>
-        <li>Mon Panier</li>
-        </ul>
-        
-        
- 
-        <h1>Hello World!</h1>
-        <h1>Anciennes commandes de ${customer.getName()}</h1>
+        <input type="submit" name="action" value="Retour au Catalogue" class="btn btn-primary">
 
     </body>
 </html>
