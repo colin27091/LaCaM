@@ -72,8 +72,34 @@ public class DAO_product {
         
  
     }
+    public Product getProduct(int product_id) throws SQLException{
+        Product product = null;
+        String sql = "SELECT * FROM PRODUCT WHERE PRODUCT_ID="+product_id;
+        try (Connection connection = ds.getConnection(); 
+		     PreparedStatement stmt = connection.prepareStatement(sql)) {
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+                            String zip = rs.getString("ZIP");
+                            product = new Product();//Initialisation de customer avec les clé (primaires et etrengère)
+                            product.setProduct_id(rs.getInt("PRODUCT_ID"));
+                            product.setManufacturer_id(rs.getInt("MANUFACTURER_ID"));
+                            product.setProduct_code(rs.getString("PRODUCT_CODE"));
+                            product.setPurchase_cost(rs.getFloat("PURCHASE_COST"));
+                            product.setQuantity_on_hand(rs.getInt("QUANTIITY_ON_HAND"));
+                            product.setMarkup(rs.getFloat("MARKUP"));
+                            product.setAvailable(rs.getString("AVAILABLE"));
+                            product.setDescription(rs.getString("DESCRIPTION"));
+                            
+                            
+			}
+		}
+        return product;
+        
+    }
     
-    
+    public void modifProfil(Product product){
+        
+    }
     
     
 }

@@ -13,7 +13,7 @@
         <title>MaCaL</title>
     </head>
  <body style="background-color: gray">
-        <h1 style="text-align: center">Ajout d'un nouveau produit</h1>
+        <h1 style="text-align: center">Modification d'un produit</h1>
         </br>
         </br>
         <form class="container">
@@ -63,12 +63,12 @@
                     <input name="description"  class="form-control" value=${description}>
             </div>
             <div>
-                <input type="submit" name="action" value="Valider" class="btn btn-primary"/>
-                <input type="submit" name="action" value="Annuler" class="btn btn-primary"/>
+                <input type="submit" name="action" value="Valider les modifications" class="btn btn-primary"/>
+                <input type="submit" name="action" value="Annuler les modifications" class="btn btn-primary"/>
             </div>
             </form>
         
-        <p style="color: red;text-align: center">${error}</p> type="submit" name="action" value="Se déconnecter"/>
+        <p style="color: red;text-align: center">${error}</p> 
         
     </body>
 </html>

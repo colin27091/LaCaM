@@ -24,12 +24,11 @@
         </tr>
         </thead>
         <tbody>
-             <c:forEach var="product" items="${products}">
+             <c:forEach var="product" items="${purchases}">
                 <tr>
-                <td>${product.getDescription()}</td>
-                <td>${product.getPurchase_cost()} €</td>
-                <td>${product.getQuantity_on_hand()}</td>
-                <td><input type="submit" name="action" value="Commander" class="btn btn-primary"></td>
+                <td>${purchase.getDescription()}</td>
+                <td>${purchase.getPurchase_cost()} €</td>
+                <td>${purchase.getQuantity_on_hand()}</td>
                 </tr>
              </c:forEach>
         </tbody>
