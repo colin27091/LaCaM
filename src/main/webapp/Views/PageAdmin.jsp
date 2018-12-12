@@ -146,8 +146,10 @@
         </table>
     </br>
     <p>
+    <form>
        <input type="submit" name="action" value="Se Deconnecter" class="btn btn-primary">
-       </br>        
+       </br>
+    </form>
     </p>
 
     </body>
