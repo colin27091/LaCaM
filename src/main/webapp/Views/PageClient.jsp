@@ -56,14 +56,6 @@
              </c:forEach>
         </tbody>
         </table>        
-       
-<<<<<<< HEAD
-        
-=======
-        <%-- Oh Mofid je t'ai mis à disposition une expression EL qui s'appele products qui est une liste de tout les produits de la base
-        tu peut t'en servir sous la forme ${products} en utilisant tout les paramètre present dans la classe product
-dont ${product.name} et plein d'autres pour faire l'affichage de tout les produits tu n'as qu'a parcourir cette liste <--%>
           <span style="visibility: hidden" id="myPopup">La commande a bien été passé!</span>
->>>>>>> 727bb7ec9bec1d98bf04ec4ec4a9fe63a48b9097
     </body>
 </html>

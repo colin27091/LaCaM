@@ -19,9 +19,9 @@
         <h1 style="text-align: center">Macal</h1>
 
   <div id="list-example" style="align-content: center">
-  <a class="btn btn-primary btn-lg btn-block" href="#list-item-1">Statistiques</a>
-  <a class="btn btn-primary btn-lg btn-block" href="#list-item-2">Gérer Produits</a>
-  <a class="btn btn-primary btn-lg btn-block" href="#list-item-3">Clients</a>
+  <a class="btn btn-primary btn-lg " href="#list-item-1">Statistiques</a>
+  <a class="btn btn-primary btn-lg " href="#list-item-2">Gérer Produits</a>
+  <a class="btn btn-primary btn-lg " href="#list-item-3">Clients</a>
   </div>
   </br>
   </br>

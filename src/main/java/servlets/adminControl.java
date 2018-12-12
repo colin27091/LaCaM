@@ -71,11 +71,12 @@ public class adminControl extends HttpServlet {
                     System.out.println("passe par la");
                     response.sendRedirect("/MaCaL/createProductControl");
                     
+                              
                     
+                    break;
                     
-                    
-                    
-                    
+                case "Se Deconnecter":
+                    response.sendRedirect("/MaCaL/loginControl");
                     break;
                 default: request.getRequestDispatcher(views).forward(request, response);
                     

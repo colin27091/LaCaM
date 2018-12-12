@@ -34,6 +34,8 @@ public class clientControl extends HttpServlet {
         //response.setContentType("/MaCaL/client");
         
         String action = request.getParameter("action");
+        action = (action == null ) ? "" :  action;
+        
         System.out.println(action);
         
       
@@ -45,10 +47,24 @@ public class clientControl extends HttpServlet {
             Customer customer = dao.getCustomer(customer_id);
             request.setAttribute("customer", customer);
             List<Product> products = dao_product.getProducts();
-            request.setAttribute("products", products);
-            request.getRequestDispatcher(views).forward(request, response);
-
             
+
+            switch(action){
+                case "Mes commandes":
+                    response.sendRedirect("/MaCaL/purchaseControl");
+                break;
+                
+                case "Gérer le profil":
+                    response.sendRedirect("/MaCaL/modifProfilControl");
+                break;
+                
+                case "Déconnexion":
+                    response.sendRedirect("/MaCaLloginControl");
+                break;
+                    
+                default : request.setAttribute("products", products);
+                            request.getRequestDispatcher(views).forward(request, response);    
+            }
             
             
         } catch (Exception ex){
