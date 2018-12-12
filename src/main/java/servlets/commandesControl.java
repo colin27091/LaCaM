@@ -38,6 +38,12 @@ public class commandesControl {
         System.out.print(action);
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
+            
+            
+            
+            
+            
+            
             switch (action) {
 		case "Retour au Catalogue":
                     response.sendRedirect("/MaCaL/clientControl");

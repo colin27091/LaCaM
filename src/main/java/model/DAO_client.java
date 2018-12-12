@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 import model.tables.Customer;
+import model.tables.Purchase;
 
 public class DAO_client {
     
@@ -111,6 +112,13 @@ public class DAO_client {
         
         return sommeTotale;
     }
+    
+    
+    
+    public List<Purchase> getPurchases(Customer customer){
+        return null;
+    }
+    
     
     
 }

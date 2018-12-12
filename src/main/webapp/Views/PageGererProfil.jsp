@@ -3,7 +3,9 @@
     Created on : 27 nov. 2018, 16:22:28
     Author     : Mofid Krim
 --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="model.tables.Customer"%>
+<%Customer customer = (Customer) request.getAttribute( "customer" ); %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -43,6 +45,7 @@
                 <div class="form-group col-md-4">
                     <label for="inputzip">Code Postal</label>
                         <select name="ZIP" class="form-control" >
+                            <option value="cusomer_zip">${customer.getCustomer_id()}</option>
                             <c:forEach var="code" items="${codes}">
                                 <option value=${code}>${code}</option>
                             </c:forEach>
