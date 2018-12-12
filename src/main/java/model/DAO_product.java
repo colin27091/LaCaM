@@ -97,7 +97,7 @@ public class DAO_product {
         
     }
     
-    public void modifProfil(Product product){
+    public void modifProduit(Product product){
         
     }
     

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : PageAnciennesCommandes
-    Created on : 27 nov. 2018, 16:23:22
-    Author     : leolo
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,11 +19,20 @@
         </tr>
         </thead>
         <tbody>
+<<<<<<< Updated upstream
              <c:forEach var="product" items="${purchases}">
                 <tr>
                 <td>${purchase.getDescription()}</td>
                 <td>${purchase.getPurchase_cost()} €</td>
                 <td>${purchase.getQuantity_on_hand()}</td>
+=======
+             <c:forEach var="purchase" items="${purchases}">
+                <tr>
+                <td>${purchase}</td>
+                <td>${purchase.getPurchase_cost()} €</td>
+                <td>${purchase.getQuantity_on_hand()}</td>
+                <td><input type="submit" name="action" value="Commander" class="btn btn-primary"></td>
+>>>>>>> Stashed changes
                 </tr>
              </c:forEach>
         </tbody>

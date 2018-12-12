@@ -1,8 +1,3 @@
-<%-- 
-    Document   : PageGererProduitsAdmin
-    Created on : 27 nov. 2018, 16:51:07
-    Author     : leolo
---%>
 <%@page import="model.tables.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

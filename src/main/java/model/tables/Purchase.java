@@ -66,6 +66,38 @@ public class Purchase {
     public void setFreight_company(String freight_company) {
         this.freight_company = freight_company;
     }
+
+    public int getOrder_num() {
+        return order_num;
+    }
+
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public int getProduct_id() {
+        return product_id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public double getShipping_cost() {
+        return shipping_cost;
+    }
+
+    public String getShipping_date() {
+        return shipping_date;
+    }
+
+    public String getSales_dates() {
+        return sales_dates;
+    }
+
+    public String getFreight_company() {
+        return freight_company;
+    }
     
     
     
