@@ -36,8 +36,8 @@ public class clientControl extends HttpServlet {
         String action = request.getParameter("action");
         System.out.println(action);
         
-        
-        
+      
+        response.setContentType("/MaCaL/client");
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
