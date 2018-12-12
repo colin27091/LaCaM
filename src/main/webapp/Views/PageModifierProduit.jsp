@@ -1,4 +1,5 @@
 <%@page import="model.tables.Product"%>
+<%Product product = (Product) request.getAttribute( "product" ); %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -27,12 +27,13 @@
     </head>
     <body style="background-color: grey" >
         <h1 style="text-align: center" style="background-color: grey">MaCaL</h1>
-        
+        <form>
         <ul>
             <input name="action" value="Mes commandes" type="submit" class="btn btn-primary">
             <input name="action" value="Gérer le profil" type="submit" class="btn btn-primary">
             <input name="action" value="Déconnexion" type="submit" class="btn btn-primary">
         </ul>
+        </form>
 
         <h2 style="text-align: left"  style="background-color: grey" >Vous etes connecté <%=customer.getName()%></h2>
     <h3 id="list-item-2" >Gestion des produits</h3>
@@ -51,7 +52,7 @@
                 <td>${product.getDescription()}</td>
                 <td>${product.getPurchase_cost()} €</td>
                 <td>${product.getQuantity_on_hand()}</td>
-                <td><input href="/MaCaL/clientControl?product_id="${product_id.getProduct_id()} type="submit" name="action" value="Commander" class="btn btn-primary" onclick="myFunction()"></td>
+                <td><form><input href="/MaCaL/clientControl?product_id="${product_id.getProduct_id()} type="submit" name="action" value="Commander" class="btn btn-primary" onclick="myFunction()"></form></td>
                 </tr>
              </c:forEach>
         </tbody>

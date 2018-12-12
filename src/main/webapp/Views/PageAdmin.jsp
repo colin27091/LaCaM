@@ -106,13 +106,18 @@
                 <td>${product.getDescription()}</td>
                 <td>${product.getPurchase_cost()} €</td>
                 <td>${product.getQuantity_on_hand()}</td>
-                <td><input type="submit" name="action" value="Modifier" class="btn btn-primary">
-                    <input type="submit" name="action" value="Supprimer" class="btn btn-primary"></td>
+                <td><form>
+                    <input type="submit" name="action" value="Modifier" class="btn btn-primary">
+                    <input type="submit" name="action" value="Supprimer" class="btn btn-primary">                      
+                    </form>
+                </td>
                 </tr>
              </c:forEach>
         </tbody>
         </table>
-        <input type="submit" name="action" value="Créer Nouveau Produit" class="btn btn-primary"> 
+        <form>
+            <input type="submit" name="action" value="Créer Nouveau Produit" class="btn btn-primary"> 
+        </form>
         </br>
         </br>
         </br>

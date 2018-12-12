@@ -19,26 +19,19 @@
         </tr>
         </thead>
         <tbody>
-<<<<<<< Updated upstream
              <c:forEach var="product" items="${purchases}">
                 <tr>
                 <td>${purchase.getDescription()}</td>
                 <td>${purchase.getPurchase_cost()} €</td>
                 <td>${purchase.getQuantity_on_hand()}</td>
-=======
-             <c:forEach var="purchase" items="${purchases}">
-                <tr>
-                <td>${purchase}</td>
-                <td>${purchase.getPurchase_cost()} €</td>
-                <td>${purchase.getQuantity_on_hand()}</td>
-                <td><input type="submit" name="action" value="Commander" class="btn btn-primary"></td>
->>>>>>> Stashed changes
                 </tr>
              </c:forEach>
         </tbody>
         </table>
+        <form>
+        <input type="submit" name="action" value="Retour au Catalogue" class="btn btn-primary">           
+        </form>
         
-        <input type="submit" name="action" value="Retour au Catalogue" class="btn btn-primary">
 
     </body>
 </html>
