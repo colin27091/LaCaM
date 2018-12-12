@@ -18,7 +18,7 @@ import model.DataSourceFactory;
  * @author leolo
  */
 @WebServlet(name = "purchaseControl", urlPatterns = {"/purchaseControl"})
-public class purchaseControl {
+public class commandesControl {
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

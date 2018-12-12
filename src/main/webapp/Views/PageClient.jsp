@@ -14,17 +14,26 @@
         <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Catalogue</title>
+        <script>
+            function myFunction() {
+                var popup = document.getElementById("myPopup");
+                popup.style.visibility = "visible";
+                setTimeout(popup.style.visibility = "hide",2000);
+                console.log("hola");
+            
+            }
+        </script>
     </head>
     <body style="background-color: grey" >
         <h1 style="text-align: center" style="background-color: grey">MaCaL</h1>
         
         <ul>
-            <input name="action" value="Mes commandes" type="SUBMIT" class="btn btn-primary">
-            <input name="action" value="Gérer le profil" type="SUBMIT" class="btn btn-primary">
-            <input name="action" value="Déconnexion" type="SUBMIT" class="btn btn-primary">
+            <input name="action" value="Mes commandes" type="submit" class="btn btn-primary">
+            <input name="action" value="Gérer le profil" type="submit" class="btn btn-primary">
+            <input name="action" value="Déconnexion" type="submit" class="btn btn-primary">
         </ul>
 
-        <h2 style="text-align: left"  style="background-color: grey" >Vous etes connecté <%=customer.getName()%></h2
+        <h2 style="text-align: left"  style="background-color: grey" >Vous etes connecté <%=customer.getName()%></h2>
     <h3 id="list-item-2" >Gestion des produits</h3>
         <table class="table table-bordered table-light">
         <thead>
@@ -41,7 +50,7 @@
                 <td>${product.getDescription()}</td>
                 <td>${product.getPurchase_cost()} €</td>
                 <td>${product.getQuantity_on_hand()}</td>
-                <td><input type="submit" name="action" value="Commander" class="btn btn-primary"></td>
+                <td><input href="/MaCaL/clientControl?product_id="${product_id.getProduct_id()} type="submit" name="action" value="Commander" class="btn btn-primary" onclick="myFunction()"></td>
                 </tr>
              </c:forEach>
         </tbody>
@@ -50,6 +59,6 @@
         <%-- Oh Mofid je t'ai mis à disposition une expression EL qui s'appele products qui est une liste de tout les produits de la base
         tu peut t'en servir sous la forme ${products} en utilisant tout les paramètre present dans la classe product
 dont ${product.name} et plein d'autres pour faire l'affichage de tout les produits tu n'as qu'a parcourir cette liste <--%>
-        
+          <span style="visibility: hidden" id="myPopup">La commande a bien été passé!</span>
     </body>
 </html>
