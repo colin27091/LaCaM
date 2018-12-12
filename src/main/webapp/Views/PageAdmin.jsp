@@ -12,6 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Espace Admin</title>
     </head>
@@ -35,12 +36,54 @@
                 <option value="clients">Les clients</option>      
            </select>
              de <input name="dateDebut"> à <input name="dateFin">
-            <input type="submit" name="action" value="Valider">
+            <input type="submit" name="action" value="Valider" id='bouton' onClick=Afficher>
         </p>
         
         </div>
-                <input type="submit" value="Afficher" onClick="AfficherMasquer()" class="btn btn-primary">
-                <div id="piechart" style="width: 900px; height: 500px; display: none;"></div>
+
+        
+            
+  <div id='graphe'>
+      <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+      window.onload = function() {
+
+         var b = document.getElementById('bouton');
+            b.onclick = function() {
+            var e = document.getElementById('graphe');
+            if(e.style.display=='block') {
+            e.style.display = 'none';
+             }
+            else {
+             e.style.display = 'block';
+             }
+             }
+
+          }
+    </script>
+  </head>
+  <body>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+  </body>
+                
                     
         </div>
         </br>
