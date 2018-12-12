@@ -101,5 +101,32 @@ public class DAO_product {
         
     }
     
+    public boolean createClient(Product product) throws SQLException{
+        String sql = "INSERT INTO APP.PRODUCT(PRODUCT_ID, MANUFACTURER_ID, PRODUCT_CODE, PURCHASE_COST, QUANTITY_ON_HAND, MARKUP, AVAILABLE, DESCRIPTION) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        try(Connection connection = ds.getConnection();
+               PreparedStatement stmt = connection.prepareStatement(sql)){
+            stmt.setInt(1, product.getCustomer_id());
+            stmt.setString(2, product.getDiscount_code());
+            stmt.setString(3, product.getZip());
+            stmt.setString(4, product.getName());
+            stmt.setString(5, product.getAddressline1());
+            stmt.setString(6, product.getAddressline2());
+            stmt.setString(7, product.getCity());
+            stmt.setString(8, product.getState());
+            stmt.executeUpdate();
+            return true;
+        } catch (Exception ex){
+            return false;
+        }
+        
+    }
+    	//PRODUCT_ID INTEGER NOT NULL,
+	//MANUFACTURER_ID INTEGER NOT NULL,
+	//PRODUCT_CODE CHAR(2) NOT NULL,
+	//PURCHASE_COST DECIMAL(12,2),
+	//QUANTITY_ON_HAND INTEGER,
+	//MARKUP DECIMAL(4,2),
+	//AVAILABLE VARCHAR(5),
+	//DESCRIPTION VARCHAR(50),
     
 }
