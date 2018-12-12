@@ -43,6 +43,7 @@
             <th scope="col">Description</th>
             <th scope="col">Prix Unitaire</th>
             <th scope="col">Quantité</th>
+            <th scope="col">Total</th>
             <th scope="col">Achat</th>
         </tr>
         </thead>
@@ -51,7 +52,8 @@
                 <tr>
                 <td>${product.getDescription()}</td>
                 <td>${product.getPurchase_cost()} €</td>
-                <td>${product.getQuantity_on_hand()}</td>
+                <td><input name="Quantité" class="form-control col-md-4">(Quantité Max: ${product.getQuantity_on_hand()})</td>
+                <td>prix total €</td>
                 <td><form><input href="/MaCaL/clientControl?product_id="${product_id.getProduct_id()} type="submit" name="action" value="Commander" class="btn btn-primary" onclick="myFunction()"></form></td>
                 </tr>
              </c:forEach>
