@@ -19,11 +19,8 @@ import model.DAO_login;
 import model.DAO_manufacturer;
 import model.DAO_product;
 import model.DataSourceFactory;
-<<<<<<< Updated upstream
 import model.tables.Customer;
 import model.tables.Manufacturer;
-=======
->>>>>>> Stashed changes
 import model.tables.Product;
 
 /**
