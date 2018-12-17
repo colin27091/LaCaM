@@ -138,6 +138,7 @@ public class createCompteControl extends HttpServlet {
                     
                     break;
                 case "Annuler":
+                    System.out.println("je passe par là");
                     response.sendRedirect("/MaCaL/loginControl");
                     break;
                 default:

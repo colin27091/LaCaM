@@ -160,6 +160,7 @@
         var description = $('#Description-'+id).val();
         console.log(cost);
 
+
         $.ajax({
             url: "modifProducts",
             data: {"ID": id, "Cost" : cost, "Quantity" : quantity , "Markup" : markup, "Description" : description},

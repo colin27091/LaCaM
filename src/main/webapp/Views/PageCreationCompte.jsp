@@ -74,8 +74,8 @@
                 </div>
             </div>
             <div>
-                <input type="submit" name="action" value="Valider" class="btn btn-primary"/>
                 <input type="submit" name="action" value="Annuler" class="btn btn-primary"/>
+                <input type="submit" name="action" href="\MaCaL\loginControl" value="Valider" class="btn btn-primary"/>
             </div>
         </form>
                 
