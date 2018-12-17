@@ -57,7 +57,7 @@ public class clientControl extends HttpServlet {
                 break;
                 
                 case "Gerer le profil":
-                    response.sendRedirect("/MaCaL/modifProfilControl");
+                    response.sendRedirect("/MaCaL//MaCaL/modifProfilControl");
                 break;
                 
                 case "Deconnexion":
