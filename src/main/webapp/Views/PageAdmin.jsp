@@ -35,6 +35,7 @@
                 <option value="cateArticle">La catégorie d'articles</option>
                 <option value="clients">Les clients</option>      
            </select>
+            
              de <input name="dateDebut"> à <input name="dateFin">
             <input type="submit" name="action" value="Valider" id='bouton' onClick=Afficher>
         </p>
@@ -44,44 +45,35 @@
         
             
   <div id='graphe'>
-      <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
+
       function drawChart() {
+
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           ['Work',     11],
           ['Eat',      2],
+          ['Commute',  2],
           ['Watch TV', 2],
           ['Sleep',    7]
         ]);
 
         var options = {
-          title: 'My Daily Activities',
-          is3D: true,
+          title: 'My Daily Activities'
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
         chart.draw(data, options);
       }
-      window.onload = function() {
-
-         var b = document.getElementById('bouton');
-            b.onclick = function() {
-            var e = document.getElementById('graphe');
-            if(e.style.display=='block') {
-            e.style.display = 'none';
-             }
-            else {
-             e.style.display = 'block';
-             }
-             }
-
-          }
     </script>
+
   </head>
   <body>
-    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
   </body>
                 
                     

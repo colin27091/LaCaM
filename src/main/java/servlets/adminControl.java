@@ -5,16 +5,21 @@
  */
 package servlets;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.DAO_admin;
 import model.DAO_client;
 import model.DAO_manufacturer;
 import model.DAO_product;
@@ -51,10 +56,13 @@ public class adminControl extends HttpServlet {
         
         
         
-        try{
+        try(PrintWriter out = response.getWriter()){
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             DAO_manufacturer dao_manufacturer = new DAO_manufacturer(DataSourceFactory.getDataSource());
             DAO_client dao_client = new DAO_client(DataSourceFactory.getDataSource());
+            DAO_admin dao_admin = new DAO_admin(DataSourceFactory.getDataSource());
+            
+            
             
             List<Customer> customers = dao_client.getCustomers();
             
@@ -85,6 +93,38 @@ public class adminControl extends HttpServlet {
                 case "Se Deconnecter":
                     response.sendRedirect("/MaCaL/");
                     break;
+                    
+                case "Valider":
+                    
+                    String dateDebut = request.getParameter("dateDebut");
+                    String dateFin = request.getParameter("dateFin");
+                    
+                    String[] debut = dateDebut.split("/");
+                    String[] fin = dateFin.split("/");
+                    
+                    
+                    dateDebut = debut[0]+"-"+debut[1]+"-"+debut[2];
+                    dateFin = fin[0]+"-"+fin[1]+"-"+fin[2];
+                    
+                    HashMap<Integer, Float> map = dao_admin.getPurchaseFromZip(dateFin, dateFin);
+                    
+                    Object[] keys = map.keySet().toArray();
+                    Object[] values = map.values().toArray();
+                    
+                    String[][] data = (String[][]) new Object[keys.length][2];
+                    
+                    for(int i = 0; i <keys.length; i++){
+                        data[i][0] = (String) keys[i];
+                        data[i][1] = (String) values[i];
+                    }
+                    
+
+                    //Gson gson = new Gson();
+                    //String gsonData = gson.toJson(map);
+                    request.setAttribute("data",data);
+                    request.getRequestDispatcher(views).forward(request, response);
+                    break;
+                    
                 default: request.getRequestDispatcher(views).forward(request, response);
                     
             }
