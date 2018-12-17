@@ -15,6 +15,7 @@ import model.DAO_product;
 import model.DataSourceFactory;
 import model.tables.Customer;
 import model.tables.Product;
+import model.tables.Purchase;
 
 
 @WebServlet(name = "clientControl", urlPatterns = {"/clientControl"})
@@ -65,6 +66,11 @@ public class clientControl extends HttpServlet {
                     response.sendRedirect("/MaCaL/");
 
                 break;
+                case "Commander":
+                    Purchase purchase = new Purchase();
+                    //purchase.setProduct_id(Integer.parseInt(request.getParameter("quantité"))
+                    purchase.setQuantity(Integer.parseInt(request.getParameter("quantité")));
+                    response.sendRedirect("/MaCal/clientControl");
                 
                 
                 default : request.setAttribute("products", products);

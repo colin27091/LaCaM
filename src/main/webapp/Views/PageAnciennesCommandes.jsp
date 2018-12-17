@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.List"%>
 <%@page import="model.tables.Product"%>
+<%@page import="model.tables.Purchase"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%Customer customer = (Customer) request.getAttribute( "customer" ); %>
 
@@ -21,6 +22,7 @@
             <th scope="col">Description</th>
             <th scope="col">Quantité</th>
             <th scope="col">Montant</th>
+            <th scope="col">Modifications</th>
         </tr>
         </thead>
         <tbody>
@@ -29,6 +31,11 @@
                 <td>${purchase.getDescription()}</td>
                 <td>${purchase.getPurchase_cost()} €</td>
                 <td>${purchase.getQuantity_on_hand()}</td>
+                <td><form>
+                    <input type="submit" name="action" value="Modifier" class="btn btn-primary">
+                    <input type="submit" name="action" value="Supprimer" class="btn btn-primary">                      
+                    </form>
+                </td>
                 </tr>
              </c:forEach>
         </tbody>

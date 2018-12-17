@@ -321,6 +321,13 @@
         <tbody>
              <c:forEach var="product" items="${products}">
                 <tr>
+                 <% 
+                     int i = request.getIntHeader(product.getQuantity_on_hand());
+                     if (i==0){}
+                 %>
+                          
+                
+                 
                 <td>${product.getDescription()}</td>
                 <td>${product.getPurchase_cost()} €</td>
                 <td>${product.getQuantity_on_hand()}</td>
