@@ -17,7 +17,7 @@ import model.tables.Customer;
 import model.tables.Product;
 
 
-//@WebServlet(name = "clientControl", urlPatterns = {"/clientControl"})
+@WebServlet(name = "clientControl", urlPatterns = {"/clientControl"})
 public class clientControl extends HttpServlet {
 
     /**
@@ -53,7 +53,7 @@ public class clientControl extends HttpServlet {
 
             switch(action){
                 case "Mes commandes":
-                    response.sendRedirect("/MaCaL/purchaseControl");
+                    response.sendRedirect("/MaCaL/commandesControl");
                 break;
                 
                 case "Gerer le profil":
@@ -63,8 +63,10 @@ public class clientControl extends HttpServlet {
                 case "Deconnexion":
                     session.removeAttribute("customer_id");
                     response.sendRedirect("/MaCaL/loginControl");
+
                 break;
-                    
+                
+                
                 default : request.setAttribute("products", products);
                             request.getRequestDispatcher(views).forward(request, response);    
             }
