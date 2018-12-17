@@ -121,8 +121,10 @@ public class createProductControl extends HttpServlet {
                                 if(!att.equals("zip")){
                                     request.setAttribute(att, request.getParameter(att));
                                 } else {
+
                                     List<Manufacturer> codes = dao_manufacturer.getManufacturers();
                                     request.setAttribute("codes", codes);
+
                                 }
                                 
                             }
@@ -193,3 +195,4 @@ public class createProductControl extends HttpServlet {
     }// </editor-fold>
 
 }
+
