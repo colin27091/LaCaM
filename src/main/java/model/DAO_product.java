@@ -120,6 +120,24 @@ public class DAO_product {
         }
         
     }
+    
+    
+    
+    public boolean removeProduct(int product_id) throws SQLException{
+        String sql = "UPDATE PRODUCT SET PRODUCT.AVAILABLE= 'FALSE', PRODUCT.QUANTITY_ON_HAND = 0 WHERE PRODUCT_ID="+product_id;
+        
+        try(Connection connection = ds.getConnection();
+                PreparedStatement stmt = connection.prepareStatement(sql)){
+            
+            stmt.execute();
+
+            return true;
+        } catch (Exception ex){
+            return false;
+        }
+        
+        
+    }
     	//PRODUCT_ID INTEGER NOT NULL,
 	//MANUFACTURER_ID INTEGER NOT NULL,
 	//PRODUCT_CODE CHAR(2) NOT NULL,

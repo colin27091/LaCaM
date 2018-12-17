@@ -62,19 +62,17 @@ public class adminControl extends HttpServlet {
             DAO_client dao_client = new DAO_client(DataSourceFactory.getDataSource());
             DAO_admin dao_admin = new DAO_admin(DataSourceFactory.getDataSource());
             
-            
-            
-            List<Customer> customers = dao_client.getCustomers();
-            
-            
             HttpSession session = request.getSession();
             boolean root = (boolean) session.getAttribute("root");
             
             
+            
+            List<Customer> customers = dao_client.getCustomers();
             request.setAttribute("customers", customers);
             
             List<Product> products = dao_product.getProducts();
             request.setAttribute("products", products);
+            
             List<Manufacturer> manufacturers = dao_manufacturer.getManufacturers();
             request.setAttribute("manufacturers", manufacturers);
             
@@ -92,6 +90,16 @@ public class adminControl extends HttpServlet {
                     
                 case "Se Deconnecter":
                     response.sendRedirect("/MaCaL/");
+                    break;
+                    
+                case "Supprimer":
+                    
+                    int product_id = Integer.parseInt(request.getParameter("product_id"));
+          
+                    System.out.println(dao_product.removeProduct(product_id));
+
+                    request.getRequestDispatcher(views).forward(request, response);
+                    
                     break;
                     
                 case "Valider":
@@ -125,6 +133,14 @@ public class adminControl extends HttpServlet {
                     request.getRequestDispatcher(views).forward(request, response);
                     break;
                     
+                    
+                case "Modifier":
+                    
+                    product_id = Integer.parseInt(request.getParameter("product_id"));
+                    
+                    response.sendRedirect("/MaCaL/modifProductControl?product_id="+product_id);
+       
+                    break;
                 default: request.getRequestDispatcher(views).forward(request, response);
                     
             }

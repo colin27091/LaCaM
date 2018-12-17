@@ -332,8 +332,8 @@
                 <td>${product.getPurchase_cost()} €</td>
                 <td>${product.getQuantity_on_hand()}</td>
                 <td><form>
-                    <input type="submit" name="action" value="Modifier" class="btn btn-primary">
-                    <input type="submit" name="action" value="Supprimer" class="btn btn-primary">                      
+                        <a href="/MaCaL/adminControl?action=Modifier&product_id=${product.getProduct_id()}" type="submit" name="action" value="Modifier" class="btn btn-primary">Modifier</a>
+                        <a href="/MaCaL/adminControl?action=Supprimer&product_id=${product.getProduct_id()}" type="submit" name="action" value="Supprimer" class="btn btn-primary">Supprimer</a>                   
                     </form>
                 </td>
                 </tr>
