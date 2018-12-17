@@ -14,15 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO_login;
 import model.DAO_client;
 import model.DAO_purchase;
+import model.DAO_product;
 import model.DataSourceFactory;
 import model.tables.Customer;
+import model.tables.Product;
 import model.tables.Purchase;
 
 /**
  *
  * @author leolo
  */
-@WebServlet(name = "purchaseControl", urlPatterns = {"/purchaseControl"})
+@WebServlet(name = "commandesControl", urlPatterns = {"/commandesControl"})
 public class commandesControl {
     
     /**
@@ -46,9 +48,11 @@ public class commandesControl {
             
             DAO_purchase dao_purchase = new DAO_purchase(DataSourceFactory.getDataSource());
             DAO_client dao_client = new DAO_client(DataSourceFactory.getDataSource());
+            DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             
             Customer customer = dao_client.getCustomer(Integer.parseInt(request.getParameter("customer_id")));
             List<Purchase> purchases = dao_purchase.getPurchases(customer);
+            List<Product> products = dao_product.getProducts();
             request.setAttribute("purchases", purchases);
             
  
@@ -56,12 +60,16 @@ public class commandesControl {
 		case "Retour au Catalogue":
                     response.sendRedirect("/MaCaL/clientControl");
                     break;
-                default: request.getRequestDispatcher(views).forward(request, response);
+                default: 
+                    request.setAttribute("products", products);
+                    request.getRequestDispatcher(views).forward(request, response);
             }
-        }
-            catch (Exception ex) {
-            request.getRequestDispatcher(views).forward(request, response);
-        }
-            
+       
+        
+        } catch (Exception ex){
+            response.sendRedirect("/MaCaL/");
+            //request.setAttribute("error_message", ex);
+            //request.getRequestDispatcher(views).forward(request, response);
+        } 
 }
 }
