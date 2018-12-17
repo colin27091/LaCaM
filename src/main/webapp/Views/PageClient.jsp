@@ -30,8 +30,8 @@
         <form>
         <ul>
             <input name="action" value="Mes commandes" type="submit" class="btn btn-primary">
-            <input name="action" value="Gérer le profil" type="submit" class="btn btn-primary">
-            <input name="action" value="Déconnexion" type="submit" class="btn btn-primary">
+            <input name="action" value="Gerer le profil" type="submit" class="btn btn-primary">
+            <input name="action" value="Deconnexion" type="submit" class="btn btn-primary">
         </ul>
         </form>
 

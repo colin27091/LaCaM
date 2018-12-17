@@ -16,9 +16,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DAO;
+import model.DAO_manufacturer;
 import model.DAO_product;
 import model.DataSourceFactory;
 import model.tables.Customer;
+import model.tables.Manufacturer;
 import model.tables.Product;
 
 /**
@@ -37,8 +39,7 @@ public class createProductControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String views = "Views/PageCreationProduit.jsp";
         
         String action = request.getParameter("action");
@@ -48,6 +49,7 @@ public class createProductControl extends HttpServlet {
         
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
+            DAO_manufacturer dao_manufacturer = new DAO_manufacturer(DataSourceFactory.getDataSource());
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             switch (action){
                 case "Valider":
@@ -119,7 +121,7 @@ public class createProductControl extends HttpServlet {
                                 if(!att.equals("zip")){
                                     request.setAttribute(att, request.getParameter(att));
                                 } else {
-                                    codes = dao.getZip_code();
+                                    List<Manufacturer> codes = dao_manufacturer.getManufacturers();
                                     request.setAttribute("codes", codes);
                                 }
                                 
@@ -150,47 +152,6 @@ public class createProductControl extends HttpServlet {
         
         
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

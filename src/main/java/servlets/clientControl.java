@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.DAO;
 import model.DAO_product;
 import model.DataSourceFactory;
@@ -32,6 +33,7 @@ public class clientControl extends HttpServlet {
             throws ServletException, IOException {
         String views = "Views/PageClient.jsp";
         //response.setContentType("/MaCaL/client");
+        HttpSession session = request.getSession();
         
         String action = request.getParameter("action");
         action = (action == null ) ? "" :  action;
@@ -43,7 +45,7 @@ public class clientControl extends HttpServlet {
         try{
             DAO dao = new DAO(DataSourceFactory.getDataSource());
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
-            int customer_id = Integer.parseInt(request.getParameter("customer_id"));
+            int customer_id = Integer.parseInt((String) session.getAttribute("customer_id"));
             Customer customer = dao.getCustomer(customer_id);
             request.setAttribute("customer", customer);
             List<Product> products = dao_product.getProducts();
@@ -54,12 +56,13 @@ public class clientControl extends HttpServlet {
                     response.sendRedirect("/MaCaL/purchaseControl");
                 break;
                 
-                case "Gérer le profil":
+                case "Gerer le profil":
                     response.sendRedirect("/MaCaL/modifProfilControl");
                 break;
                 
-                case "Déconnexion":
-                    response.sendRedirect("/MaCaLloginControl");
+                case "Deconnexion":
+                    session.removeAttribute("customer_id");
+                    response.sendRedirect("/MaCaL/loginControl");
                 break;
                     
                 default : request.setAttribute("products", products);
@@ -68,8 +71,9 @@ public class clientControl extends HttpServlet {
             
             
         } catch (Exception ex){
-            request.setAttribute("error_message", ex);
-            request.getRequestDispatcher(views).forward(request, response);
+            response.sendRedirect("/MaCaL/loginControl");
+            //request.setAttribute("error_message", ex);
+            //request.getRequestDispatcher(views).forward(request, response);
         }
         
         

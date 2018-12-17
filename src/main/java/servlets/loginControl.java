@@ -11,11 +11,14 @@ import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 import model.DAO;
 import model.DataSourceFactory;
 import model.tables.Customer;
@@ -55,7 +58,10 @@ public class loginControl extends HttpServlet {
                         response.sendRedirect("/MaCaL/adminControl");
                     } else {
                         if(dao.getLogin(email,Integer.parseInt(mdp))){
-                            response.sendRedirect("/MaCaL/clientControl?customer_id="+mdp);
+                            HttpSession session = request.getSession();
+                            session.setAttribute("customer_id", mdp);
+                            System.out.println(session == null);
+                            response.sendRedirect("/MaCaL/clientControl");
                             
                         } else {
                             request.setAttribute("error_message", "Mauvais identifiant");
