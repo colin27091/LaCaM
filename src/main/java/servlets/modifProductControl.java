@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO;
+import model.DAO_login;
 import model.DAO_product;
 import model.DataSourceFactory;
 import model.tables.Product;
@@ -52,7 +52,7 @@ public class modifProductControl extends HttpServlet {
             
            
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
-            DAO dao = new DAO(DataSourceFactory.getDataSource());
+            DAO_login dao = new DAO_login(DataSourceFactory.getDataSource());
 
             Product product = dao_product.getProduct(Integer.parseInt(request.getParameter("product_id")));
             

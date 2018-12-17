@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import model.DAO;
+import model.DAO_login;
 import model.DataSourceFactory;
 import org.apache.derby.tools.ij;
 
@@ -40,7 +40,7 @@ public class AppListener implements ServletContextListener {
 	private boolean databaseExists() {
 		boolean result = false;
 
-		DAO dao = new DAO(DataSourceFactory.getDataSource());
+		DAO_login dao = new DAO_login(DataSourceFactory.getDataSource());
 		try {
 			List<String> allCodes = dao.getZip_code();
 			Logger.getLogger("loginControl").log(Level.INFO, "Database already exists");

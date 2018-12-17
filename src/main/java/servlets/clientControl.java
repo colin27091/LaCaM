@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.DAO;
+import model.DAO_login;
 import model.DAO_product;
 import model.DataSourceFactory;
 import model.tables.Customer;
@@ -43,7 +43,7 @@ public class clientControl extends HttpServlet {
       
         response.setContentType("/MaCaL/client");
         try{
-            DAO dao = new DAO(DataSourceFactory.getDataSource());
+            DAO_login dao = new DAO_login(DataSourceFactory.getDataSource());
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             int customer_id = Integer.parseInt((String) session.getAttribute("customer_id"));
             Customer customer = dao.getCustomer(customer_id);
@@ -62,7 +62,7 @@ public class clientControl extends HttpServlet {
                 
                 case "Deconnexion":
                     session.removeAttribute("customer_id");
-                    response.sendRedirect("/MaCaL/loginControl");
+                    response.sendRedirect("/MaCaL/");
 
                 break;
                 
@@ -73,7 +73,7 @@ public class clientControl extends HttpServlet {
             
             
         } catch (Exception ex){
-            response.sendRedirect("/MaCaL/loginControl");
+            response.sendRedirect("/MaCaL/");
             //request.setAttribute("error_message", ex);
             //request.getRequestDispatcher(views).forward(request, response);
         }

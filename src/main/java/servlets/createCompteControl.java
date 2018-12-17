@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO;
+import model.DAO_login;
 import model.DAO_client;
 import model.DataSourceFactory;
 import model.tables.Customer;
@@ -46,7 +46,7 @@ public class createCompteControl extends HttpServlet {
         
         
         try{
-            DAO dao = new DAO(DataSourceFactory.getDataSource());
+            DAO_login dao = new DAO_login(DataSourceFactory.getDataSource());
             DAO_client dao_client = new DAO_client(DataSourceFactory.getDataSource());
             switch (action){
                 case "Valider":

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
-import model.DAO;
+import model.DAO_login;
 import model.DataSourceFactory;
 import model.tables.Customer;
 
@@ -39,6 +39,8 @@ public class loginControl extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -49,12 +51,14 @@ public class loginControl extends HttpServlet {
         String views ="Views/PageConnexion.jsp";
         System.out.print(action);
         try{
-            DAO dao = new DAO(DataSourceFactory.getDataSource());
+            DAO_login dao = new DAO_login(DataSourceFactory.getDataSource());
             switch (action) {
 		case "Se connecter":
                     System.out.println(email + "     " + mdp);
                     if(dao.isAdmin(email, mdp)){
                         System.out.println("is admin");
+                        HttpSession session = request.getSession();
+                        session.setAttribute("root", true);
                         response.sendRedirect("/MaCaL/adminControl");
                     } else {
                         if(dao.getLogin(email,Integer.parseInt(mdp))){

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import model.DAO;
+import model.DAO_login;
 import model.DAO_client;
 import model.DataSourceFactory;
 import model.tables.Customer;
@@ -53,7 +53,7 @@ public class modifProfilControl extends HttpServlet {
             
            
             DAO_client dao_client = new DAO_client(DataSourceFactory.getDataSource());
-            DAO dao = new DAO(DataSourceFactory.getDataSource());
+            DAO_login dao = new DAO_login(DataSourceFactory.getDataSource());
 
             Customer customer = dao_client.getCustomer(Integer.parseInt(request.getParameter("customer_id")));
             List<String> codes = dao.getZip_code();

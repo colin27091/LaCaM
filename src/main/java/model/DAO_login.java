@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import model.tables.Product;
 import model.tables.Purchase;
 
-public class DAO {
+public class DAO_login {
     
     private final DataSource ds;
     private String emailAdmin = "root";
@@ -22,7 +22,7 @@ public class DAO {
     
     
 
-    public DAO(DataSource dataSource) {
+    public DAO_login(DataSource dataSource) {
     
         this.ds = dataSource;
     }

@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.DAO_client;
 import model.DAO_manufacturer;
 import model.DAO_product;
@@ -46,12 +47,21 @@ public class adminControl extends HttpServlet {
         action = (action == null ) ? "" : action;
         System.out.println(action);
         
+        
+        
+        
+        
         try{
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             DAO_manufacturer dao_manufacturer = new DAO_manufacturer(DataSourceFactory.getDataSource());
             DAO_client dao_client = new DAO_client(DataSourceFactory.getDataSource());
             
             List<Customer> customers = dao_client.getCustomers();
+            
+            
+            HttpSession session = request.getSession();
+            boolean root = (boolean) session.getAttribute("root");
+            
             
             request.setAttribute("customers", customers);
             
@@ -73,7 +83,7 @@ public class adminControl extends HttpServlet {
                     break;
                     
                 case "Se Deconnecter":
-                    response.sendRedirect("/MaCaL/loginControl");
+                    response.sendRedirect("/MaCaL/");
                     break;
                 default: request.getRequestDispatcher(views).forward(request, response);
                     
@@ -81,7 +91,7 @@ public class adminControl extends HttpServlet {
            
             
         }catch (Exception ex){
-            request.setAttribute("error_message", ex);
+            response.sendRedirect("/MaCaL/");
         }
 
         

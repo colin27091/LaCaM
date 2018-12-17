@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO;
+import model.DAO_login;
 import model.DAO_client;
 import model.DAO_purchase;
 import model.DataSourceFactory;
