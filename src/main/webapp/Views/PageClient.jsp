@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html" charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/PagesCss.css" media="screen" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Catalogue</title>
@@ -22,6 +22,14 @@
                 setTimeout(popup.style.visibility = "hide",2000);
                 console.log("hola");
             
+            }
+            
+            function prix(p) {
+                var prixprod = document.getElementById("prixprod");
+                var quantite = document.getElementById("quantite");
+                alert(quantite);
+                alert(prixprod);
+                return "marche pas putain, j'ai faim";
             }
         </script>
     </head>
@@ -51,9 +59,9 @@
              <c:forEach var="product" items="${products}">
                 <tr>
                 <td>${product.getDescription()}</td>
-                <td>${product.getPurchase_cost()} €</td>
-                <td><input name="Quantité" class="form-control col-md-4">(Quantité Max: ${product.getQuantity_on_hand()})</td>
-                <td>prix total €</td>
+                <td id="prixprod">${product.getPurchase_cost()} €</td>
+                <td><input name="Quantité" class="form-control col-md-4" type="number" id="start" value="1" min="1" max="${product.getQuantity_on_hand()}">(Quantité Max: ${product.getQuantity_on_hand()})</td>
+                <td><a onclick="prix()">Affiche</a> </td>
                 <td><form><input href="/MaCaL/clientControl?product_id="${product_id.getProduct_id()} type="submit" name="action" value="Commander" class="btn btn-primary" onclick="myFunction()"></form></td>
                 </tr>
              </c:forEach>
