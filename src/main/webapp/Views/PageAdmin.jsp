@@ -249,7 +249,7 @@
         $.ajax({
             data: {"action": "deconnexion"},
             success: function(){
-                        window.location.href = "LoginController";
+                        window.location.href = "loginControl";
                         console.log("Déconnexion...");
                     }
         });
