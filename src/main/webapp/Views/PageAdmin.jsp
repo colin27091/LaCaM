@@ -13,6 +13,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html" charset=UTF-8">
          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
+         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <title>Espace Admin</title>
     </head>
@@ -47,29 +50,251 @@
   <div id='graphe'>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+    // Chiffres d'affaires par produit           
+        google.load("visualization", "1", {packages: ["corechart"]});
+        
+        $(document).ready(// Exécuté à la fin du chargement de la page
+            function () {
+                // On montre la liste des codes
+                showCodes();
+            }
+        );
 
-      function drawChart() {
+        function drawChart(dataArray) {
+                var data = google.visualization.arrayToDataTable(dataArray);
+                var options = {
+                        title: 'Chiffre d`affaires par catégories de produit',
+                        is3D: true
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                chart.draw(data, options);
+        }
+                function doGeoAjax() {
+                $.ajax({
+                        url: "ChiffreAffairesGeo",
+                        data: $("#codeForm").serialize(),
+                        dataType: "json",
+                        success: // La fonction qui traite les résultats
+                                function (result) {
+                                        // On reformate le résultat comme un tableau
+                                        var chartData = [];
+                                        // On met le descriptif des données
+                                        chartData.push(["Etat", "chiffre d'affaires"]);
+                                        for(var client in result.records) {
+                                                chartData.push([client, result.records[client]]);
+                                        }
+                                        // On dessine le graphique
+                                        drawRegionsMap(chartData);
+                                },
+                        error: showError
+                });
+        }
+    // Chiffres d'affaires par client
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
 
-        var options = {
-          title: 'My Daily Activities'
-        };
+        function drawChartClient(dataClient) {
+                var data = google.visualization.arrayToDataTable(dataClient);
+                var options = {
+                        title: 'Chiffre d`affaires par Clients',
+                        is3D: true
+                };
+                var Clientchart = new google.visualization.PieChart(document.getElementById('piechartclient'));
+                Clientchart.draw(data, options);
+        }
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        // Afficher les ventes par client
+        function doClientAjax() {
+                $.ajax({
+                        url: "ChiffreAffairesClients",
+                        data: $("#codeForm").serialize(),
+                        dataType: "json",
+                        success: // La fonction qui traite les résultats
+                                function (result) {
+                                        // On reformate le résultat comme un tableau
+                                        var chartData = [];
+                                        // On met le descriptif des données
+                                        chartData.push(["Client", "chiffre d'affaires"]);
+                                        for(var client in result.records) {
+                                                chartData.push([client, result.records[client]]);
+                                        }
+                                        // On dessine le graphique
+                                        drawChartClient(chartData);
+                                },
+                        error: showError
+                });
+        }
+        // Afficher les ventes par client
+        function showCodes() {
+        // On fait un appel AJAX pour chercher les codes
+        $.ajax({
+            url: "allProduit",
+            dataType: "json",
+            error: showError,
+            success: // La fonction qui traite les résultats
+                    function (result) {
+                        console.log(result);
+                        var chartData = [];
+                        var h = {};
+                        // Le code source du template est dans la page
+                        var template = $('#codesTemplate2').html();
+                        for(var client in result.records) {
+                        chartData.push(result.records[client]);
 
-        chart.draw(data, options);
+                    }
+                        h.records=chartData;
+
+
+                        var processedTemplate = Mustache.to_html(template, h);
+                        // On combine le template avec le résultat de la requête
+                        $('#piechartclient').html(processedTemplate);
+
+
+                    }
+            });
+        }
+
+    function ModifProduct(id) {
+        var cost = $('#Cost-'+id).val();
+        var quantity = $('#Quantity-'+id).val();
+        var markup = $('#Markup-'+id).val();
+        var description = $('#Description-'+id).val();
+        console.log(cost);
+
+        $.ajax({
+            url: "modifProducts",
+            data: {"ID": id, "Cost" : cost, "Quantity" : quantity , "Markup" : markup, "Description" : description},
+            dataType: "json",
+            success: // La fonction qui traite les résultats
+                    function (result) {
+                        $('#message').html(result.message);
+                        showCodes();
+                        console.log(result);
+                    },
+            error: showError
+        });
+        return false;
+    }
+
+    function deleteProduct(code) {
+    $.ajax({
+        url: "deleteProduct",
+        data: {"code": code},
+        dataType: "json",
+        success: 
+                function (result) {
+                    $('#message').html(result.message);
+                    showCodes();
+                },
+        error: showError
+    });
+    return false;
+    }
+
+    function addProduct() {
+        $.ajax({
+            url: "AddProduct",
+            data: $("#ajouter").serialize(),
+            // serialize() renvoie tous les paramètres saisis dans le formulaire
+            dataType: "json",
+            success: // La fonction qui traite les résultats
+                    function (result) {
+                        $('#message').html(result.message);
+                        showCodes();
+                        console.log(result.message);
+                    },
+            error: showError
+        });
+        return false;
+    }
+
+
+            // Fonction qui traite les erreurs de la requête
+    function showError(xhr, status, message) {
+            alert("Erreur: " + status + " : " + message);
+    }
+
+    function ChoixChart(){
+        var radios = document.getElementsByName('g');
+        var valeur;
+        for(var i = 0; i < radios.length; i++){
+            if(radios[i].checked){
+               valeur = i;
+            }
+        }
+        
+        switch(valeur){
+            case 0: doAjax();break;
+            case 1: doGeoAjax();break;
+            case 2: doClientAjax();break;
+        }
+    }
+
+    function afficherGraphiques(){
+        $('#message').empty();
+        $('#graphique').show();
+        $('#table').hide();
+        $('#piechartclient').empty();
+    }
+
+    function afficherProduits(){
+        $('#message').empty();
+        $('#graphique').hide();
+        $('#table').show();
+        $('#piechartclient').empty();
+        showCodes();
+    }
+
+    function disconnect(){
+        $.ajax({
+            data: {"action": "deconnexion"},
+            success: function(){
+                        window.location.href = "LoginController";
+                        console.log("Déconnexion...");
+                    }
+        });
+
+        return false;
+    }
       }
+         window.onload = function() {
+         var b = document.getElementById('bouton');
+            b.onclick = function() {
+            var e = document.getElementById('graphe');
+            if(e.style.display=='block') {
+            e.style.display = 'none';
+             }
+            else {
+             e.style.display = 'block';
+             }
+             }
+          }
     </script>
+        <fieldset id="graphique" title="Graphiques" style="color:white;font-family:Arial;">
+        <legend>Graphiques de chiffre d'affaires</legend>
+        <div>
+            <label><input name="g" type="radio" onclick="doAjax()"/>Par Produit</label>
+            <br/>
+            <label><input name="g" type="radio" onclick="doGeoAjax()"/>Par Zone Géographique</label>
+            <br/>
+            <label><input name="g" type="radio" onclick="doClientAjax()"/>Par Client</label>
+        </div>
+        <br/>
+        <div>
+            <form id='codeForm' style="text-align:center;">
+                <label for="start">Date debut :<input name="dateDebut" type="date" id="start"></label>
+                <label for="fin">Date fin :<input name="dateFin" type="date" id="fin"></label>
+                <button type="button" onclick="ChoixChart()" >Valider</button>
+            </form>
+
+            <script>
+            var today = new Date();
+            var formattedToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            $('#start').val(formattedToday);
+            $('#fin').val(formattedToday);
+            $('#graphique').hide();
+            </script>
+        </div>
+    </fieldset>
 
   </head>
   <body>
