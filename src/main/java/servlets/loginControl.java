@@ -59,13 +59,13 @@ public class loginControl extends HttpServlet {
                         System.out.println("is admin");
                         HttpSession session = request.getSession();
                         session.setAttribute("root", true);
-                        response.sendRedirect("/MaCaL/adminControl");
+                        response.sendRedirect("adminControl");
                     } else {
                         if(dao.getLogin(email,Integer.parseInt(mdp))){
                             HttpSession session = request.getSession();
                             session.setAttribute("customer_id", mdp);
                             System.out.println(session == null);
-                            response.sendRedirect("/MaCaL/clientControl");
+                            response.sendRedirect("clientControl");
                             
                         } else {
                             request.setAttribute("error_message", "Mauvais identifiant");
@@ -75,7 +75,7 @@ public class loginControl extends HttpServlet {
                     }
                     break;
                 case "Creer un compte":
-                    response.sendRedirect("/MaCaL/createCompteControl");
+                    response.sendRedirect("createCompteControl");
                     break;
                 default: request.getRequestDispatcher(views).forward(request, response);
             }
