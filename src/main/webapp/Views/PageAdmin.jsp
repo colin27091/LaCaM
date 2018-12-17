@@ -98,7 +98,7 @@
                         title: 'Chiffre d`affaires par Clients',
                         is3D: true
                 };
-                var Clientchart = new google.visualization.PieChart(document.getElementById('piechartclient'));
+                var Clientchart = new google.visualization.PieChart(document.getElementById('piechart'));
                 Clientchart.draw(data, options);
         }
 
@@ -146,7 +146,7 @@
 
                         var processedTemplate = Mustache.to_html(template, h);
                         // On combine le template avec le résultat de la requête
-                        $('#piechartclient').html(processedTemplate);
+                        $('#piechart').html(processedTemplate);
 
 
                     }
@@ -233,14 +233,14 @@
         $('#message').empty();
         $('#graphique').show();
         $('#table').hide();
-        $('#piechartclient').empty();
+        $('#piechart').empty();
     }
 
     function afficherProduits(){
         $('#message').empty();
         $('#graphique').hide();
         $('#table').show();
-        $('#piechartclient').empty();
+        $('#piechart').empty();
         showCodes();
     }
 
