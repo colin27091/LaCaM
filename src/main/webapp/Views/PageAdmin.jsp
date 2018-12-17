@@ -115,9 +115,13 @@
              </c:forEach>
         </tbody>
         </table>
+<<<<<<< Updated upstream
         <form>
             <input type="submit" name="action" value="Créer Nouveau Produit" class="btn btn-primary"> 
         </form>
+=======
+        <input type="submit" name="action" value="Créer Nouveau Produit" class="btn btn-primary">
+>>>>>>> Stashed changes
         </br>
         </br>
         </br>
@@ -148,8 +152,13 @@
     <p>
     <form>
        <input type="submit" name="action" value="Se Deconnecter" class="btn btn-primary">
+<<<<<<< Updated upstream
        </br>
     </form>
+=======
+    </form>   
+       </br>        
+>>>>>>> Stashed changes
     </p>
 
     </body>

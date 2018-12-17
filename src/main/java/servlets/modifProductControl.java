@@ -60,8 +60,7 @@ public class modifProductControl extends HttpServlet {
             
             switch(action){
                 case "Valider les modifications":
-                    
-                    
+
                     Enumeration<String> enum1 = request.getParameterNames();
                     boolean erreur = false;
                     while(enum1.hasMoreElements()){
@@ -72,15 +71,11 @@ public class modifProductControl extends HttpServlet {
                             
                         }
                     }
-                    
-                    
                     if(erreur){
                         
                         request.getRequestDispatcher(views).forward(request, response);
                         
                     } else {
-                    
-                    
                     Product p = new Product();
                     
                     p.setProduct_id(Integer.parseInt(request.getParameter("product_id")));
@@ -98,34 +93,17 @@ public class modifProductControl extends HttpServlet {
 
                     } 
                     break;
-                
-                case "Annuler les modifications":
-                    
-                    
+                case "Annuler les modifications":  
                     response.sendRedirect("/MaCaL/adminControl");
-                    
-                    
-                    break;
-                    
-                    
+                    break;   
                     
                 default :request.setAttribute("product", product);
                          request.getRequestDispatcher(views).forward(request, response);
             }
-            
-            
-            
-            
-            
-            
-        }catch (Exception ex){
-            
-            
-            
+
+        }catch (Exception ex){  
         }
-        
-        
-        
+
     }
 }
 

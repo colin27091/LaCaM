@@ -55,9 +55,6 @@ public class adminControl extends HttpServlet {
             
             request.setAttribute("customers", customers);
             
-            
-            
-            
             List<Product> products = dao_product.getProducts();
             request.setAttribute("products", products);
             List<Manufacturer> manufacturers = dao_manufacturer.getManufacturers();
