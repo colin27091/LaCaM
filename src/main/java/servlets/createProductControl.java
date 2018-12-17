@@ -84,7 +84,7 @@ public class createProductControl extends HttpServlet {
                    try{
                        
                     product.setProduct_id(Integer.parseInt(request.getParameter("product_id")));
-                    product.setManufacturer_id(Integer.parseInt(request.getParameter("product_id")));
+                    product.setManufacturer_id(Integer.parseInt(request.getParameter("manufacturer_id")));
                     product.setProduct_code(request.getParameter("product_code"));
                     product.setPurchase_cost(Float.parseFloat(request.getParameter("purchase_cost")));
                     product.setQuantity_on_hand(Integer.parseInt(request.getParameter("quantity_on_hand")));
@@ -137,7 +137,7 @@ public class createProductControl extends HttpServlet {
                     response.sendRedirect("/MaCaL/adminControl");
                     break;
                 default:
-                    request.setAttribute("", dao.getZip_code());
+                    request.setAttribute("manufacturer", dao.getZip_code());
                     request.getRequestDispatcher(views).forward(request, response);
             }
                     

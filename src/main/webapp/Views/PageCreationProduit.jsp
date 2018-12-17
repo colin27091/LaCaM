@@ -25,7 +25,7 @@
                 <div class="form-group col-md-4">
                 <label for="ZIP">ID de Manufacture</label>
                         <select name="manufacturer" class="form-control" >
-                            <c:forEach var="code" items="${manufacturers}">
+                            <c:forEach var="manufacturer" items="${manufacturers}">
                                 <option value=${manufacturer}>${manufacturer}</option>
                             </c:forEach>
                         </select>

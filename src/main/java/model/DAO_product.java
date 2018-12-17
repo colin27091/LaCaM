@@ -101,18 +101,18 @@ public class DAO_product {
         
     }
     
-    public boolean createClient(Product product) throws SQLException{
+    public boolean createProduct(Product product) throws SQLException{
         String sql = "INSERT INTO APP.PRODUCT(PRODUCT_ID, MANUFACTURER_ID, PRODUCT_CODE, PURCHASE_COST, QUANTITY_ON_HAND, MARKUP, AVAILABLE, DESCRIPTION) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try(Connection connection = ds.getConnection();
                PreparedStatement stmt = connection.prepareStatement(sql)){
-            stmt.setInt(1, product.getCustomer_id());
-            stmt.setString(2, product.getDiscount_code());
-            stmt.setString(3, product.getZip());
-            stmt.setString(4, product.getName());
-            stmt.setString(5, product.getAddressline1());
-            stmt.setString(6, product.getAddressline2());
-            stmt.setString(7, product.getCity());
-            stmt.setString(8, product.getState());
+            stmt.setInt(1, product.getProduct_id());
+            stmt.setInt(2, product.getManufacturer_id());
+            stmt.setString(3, product.getProduct_code());
+            stmt.setDouble(4, product.getPurchase_cost());
+            stmt.setInt(5, product.getQuantity_on_hand());
+            stmt.setDouble(6, product.getMarkup());
+            stmt.setString(7, product.getAvailable());
+            stmt.setString(8, product.getDescription());
             stmt.executeUpdate();
             return true;
         } catch (Exception ex){
