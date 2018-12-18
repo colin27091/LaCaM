@@ -36,7 +36,7 @@
                 <option value="clients">Les clients</option>      
            </select>
             
-             de <input name="dateDebut"> à <input name="dateFin">
+             de <input name="dateDebut" type="date"> à <input name="dateFin" type="date">
             <input type="submit" name="action" value="Valider" id='bouton' onClick=Afficher>
         </p>
         
@@ -59,7 +59,7 @@
           ['Sleep',    7]
         ]);
         var options = {
-          title: 'My Daily Activities'
+          title: "Chiffre d'affaires"
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
