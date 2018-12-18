@@ -25,7 +25,7 @@ public class DAO_product {
     
     public List<Product> getProducts() throws SQLException{
         List<Product> products = new ArrayList<Product>();
-        String sql = "SELECT * FROM PRODUCT";
+        String sql = "SELECT * FROM PRODUCT WHERE QUANTITY_ON_HAND != 0";
         try (Connection connection = ds.getConnection(); 
             PreparedStatement stmt = connection.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
