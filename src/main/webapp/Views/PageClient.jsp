@@ -23,16 +23,9 @@
                 console.log("hola");
             
             }
-            
-            function prix(p) {
-                var prixprod = document.getElementById("prixprod");
-                var quantite = document.getElementById("quantite");
-                alert(quantite);
-                alert(prixprod);
-                return "marche pas putain, j'ai faim";
-            } 
-            
+
         </script>
+
     </head>
     <body style="background-color: grey" >
         <h1 style="text-align: center" style="background-color: grey">MaCaL</h1>
@@ -52,7 +45,6 @@
             <th scope="col">Description</th>
             <th scope="col">Prix Unitaire</th>
             <th scope="col">Quantité</th>
-            <th scope="col">Total</th>
             <th scope="col">Achat</th>
         </tr>
         </thead>
@@ -62,7 +54,6 @@
                 <td name="nom">${product.getDescription()}</td>
                 <td name="prixprod">${product.getPurchase_cost()} €</td>
                 <td><input name="quantité" class="form-control col-md-4" type="number" id="start" value="1" min="1" max="${product.getQuantity_on_hand()}">(Quantité Max: ${product.getQuantity_on_hand()})</td>
-                <td><a onclick="prix()">Affiche</a> </td>
                 <td><form><input href="/MaCaL/clientControl?product_id="${product_id.getProduct_id()} type="submit" name="action" value="Commander" class="btn btn-primary" onclick="myFunction()"></form></td>
                 </tr>
              </c:forEach>

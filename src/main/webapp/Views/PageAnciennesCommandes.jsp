@@ -18,7 +18,7 @@
     <body style="background-color: grey">
         
         <h1 style="text-align: center" style="background-color: grey">MaCaL</h1>
-        <h2 style="text-align: left"  style="background-color: grey" >Commandes de <%=customer.getName()%></h2>
+        <h2 style="text-align: left"  style="background-color: grey">Commandes de <%=customer.getName()%></h2>
         <p>${customer.getCustomer_id()}</p>
         <table class="table table-bordered table-light">
         <thead>
