@@ -53,23 +53,22 @@ public class purchaseControl extends HttpServlet {
             HttpSession session = request.getSession();
             Customer customer = dao_client.getCustomer(Integer.parseInt((String) session.getAttribute("customer_id")));
             List<Purchase> purchases = dao_purchase.getPurchases(customer);
+            
             List<Product> products = dao_product.getProducts();
-            
-            
  
             switch (action) {
 		case "Retour au Catalogue":
                     response.sendRedirect("/MaCaL/clientControl");
                     break;
                 default: 
-                    request.setAttribute("customer", customer);
+                    System.out.println(purchases.size());
                     request.setAttribute("purchases", purchases);
                     request.getRequestDispatcher(views).forward(request, response);
             }
        
         
         } catch (Exception ex){
-            
+            System.out.println(ex);
             response.sendRedirect("/MaCaL/");
             //response.sendRedirect("/MaCaL/");
             //request.setAttribute("error_message", ex);

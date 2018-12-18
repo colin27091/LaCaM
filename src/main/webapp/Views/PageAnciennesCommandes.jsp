@@ -30,7 +30,7 @@
         </tr>
         </thead>
         <tbody>
-            <c:forEach var="purchase" items="${purchases}">
+            <c:forEach var="purchase" items="purchases">
                 <tr>
                 <td>${purchase.getDescription()}</td>
                 <td>${purchase.getPurchase_cost()} €</td>

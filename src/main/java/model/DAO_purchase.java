@@ -22,7 +22,7 @@ public class DAO_purchase {
     public List<Purchase> getPurchases(Customer customer) {
         List<Purchase> purchases = new ArrayList<Purchase>();
                 
-        String sql = "SELECT * FROM PURCHASE_ORDER WHERE CUSTOMER_ID"+customer.getCustomer_id();
+        String sql = "SELECT * FROM PURCHASE_ORDER WHERE CUSTOMER_ID="+customer.getCustomer_id();
         
         
         try(Connection connection = ds.getConnection();
@@ -39,7 +39,7 @@ public class DAO_purchase {
                 p.setQuantity(rs.getInt("quantity"));
                 p.setShipping_cost(rs.getFloat("shipping_cost"));
                 p.setShipping_date(rs.getString("shipping_date"));
-                p.setSales_dates(rs.getString("sales_dates"));
+                p.setSales_dates(rs.getString("sales_date"));
                 p.setFreight_company(rs.getString("freight_company"));
                 
                 
@@ -49,7 +49,7 @@ public class DAO_purchase {
             
             
         } catch (Exception ex){
-            
+            System.out.println("Erreur dans le DAO" +  ex);
         }
         
         return purchases;
