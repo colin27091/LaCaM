@@ -97,9 +97,24 @@ public class DAO_product {
         
     }
     
-    public void modifProduit(Product product){
+    public void modifProduit(Product product, Product p)throws SQLException{ //product à modif, p le nouveau
+        String sql ="UPDATE PRODUCT SET MANUFACTURER_ID = ?, PRODUCT_CODE = ?, PURCHASE_COST = ?, QUANTITY_ON_HAND = ?, MARKUP = ?, AVAILABLE = ?, DESCRIPTION = ? WHERE PRODUCT_ID ="+product.getProduct_id();
+        try(Connection connection = ds.getConnection();
+               PreparedStatement stmt = connection.prepareStatement(sql)){ 
+            stmt.setInt(1, p.getManufacturer_id());
+            stmt.setString(2, p.getProduct_code());
+            stmt.setDouble(3, p.getPurchase_cost());
+            stmt.setInt(4, p.getQuantity_on_hand());
+            stmt.setDouble(5, p.getMarkup());
+            stmt.setString(6, p.getAvailable());
+            stmt.setString(7, p.getDescription());
+            stmt.executeUpdate();
+        } catch (Exception ex){
+           
+        }            
+            
+        }
         
-    }
     
     public boolean createProduct(Product product) throws SQLException{
         String sql = "INSERT INTO APP.PRODUCT(PRODUCT_ID, MANUFACTURER_ID, PRODUCT_CODE, PURCHASE_COST, QUANTITY_ON_HAND, MARKUP, AVAILABLE, DESCRIPTION) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";

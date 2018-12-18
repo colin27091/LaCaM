@@ -104,7 +104,7 @@ public class modifProfilControl extends HttpServlet {
                     c.setDiscount_code(request.getParameter("discount_code")); 
                     
                     
-                    dao_client.modifProfil(c);
+                    dao_client.modifProfil(customer,c);
                    
                     response.sendRedirect("/MaCaL/clientControl?customer_id="+c.getCustomer_id());
 

@@ -159,9 +159,24 @@ public class DAO_client {
     }
     
     
-    public void modifProfil(Customer customer){
-        
+    public void modifProfil(Customer customer, Customer c)throws SQLException{
+                String sql ="UPDATE PRODUCT SET DISCOUNT_CODE = ?, ZIP = ?, NAME = ?, ADDRESSLINE1 = ?, ADDRESSLINE2 = ?, CITY = ?, STATE = ?, PHONE = ?, FAX = ?, EMAIL = ?, CREDIT_LIMIT = ? WHERE CUSTOMER_ID ="+customer.getCustomer_id();
+        try(Connection connection = ds.getConnection();
+               PreparedStatement stmt = connection.prepareStatement(sql)){ 
+            stmt.setString(1, c.getDiscount_code());
+            stmt.setString(2, c.getZip());
+            stmt.setString(3, c.getName());
+            stmt.setString(4, c.getAddressline1());
+            stmt.setString(5, c.getAddressline2());
+            stmt.setString(6, c.getCity());
+            stmt.setString(7, c.getState());
+            stmt.setString(7, c.getPhone());
+            stmt.setString(7, c.getFax());
+            stmt.setString(7, c.getEmail());
+            stmt.setInt(7, c.getCredit_limit());
+            stmt.executeUpdate();
+        } catch (Exception ex){
+           
+        }
     }
-    
-    
 }

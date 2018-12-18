@@ -14,9 +14,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.DAO_client;
 import model.DAO_login;
 import model.DAO_product;
 import model.DataSourceFactory;
+import model.tables.Customer;
 import model.tables.Product;
 
 /**
@@ -46,7 +49,86 @@ public class modifProductControl extends HttpServlet {
         action = (action == null ) ? "" : action;
         
         request.getRequestDispatcher(views).forward(request, response);
+        try{
+            
+           
+            DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
+            DAO_login dao = new DAO_login(DataSourceFactory.getDataSource());
+            
+            HttpSession session = request.getSession();
+            
+            
 
+            Product product = dao_product.getProduct(Integer.parseInt((String) session.getAttribute("product_id")));
+            
+            
+            
+            switch(action){
+                case "Valider les modifications":
+                    
+                    
+                    Enumeration<String> enum1 = request.getParameterNames();
+                    boolean erreur = false;
+                    while(enum1.hasMoreElements()){
+                        if(request.getParameter(enum1.nextElement()).equals("")){
+                            erreur = true;
+                            System.out.print(erreur);
+                            request.setAttribute("error", "Tout les champs doivent être rempli");
+                            
+                        }
+                    }
+                    
+                    
+                    if(erreur){
+                        
+                        request.getRequestDispatcher(views).forward(request, response);
+                        
+                    } else {
+                    
+                    
+                    Product p = new Product();
+                    
+                    p.setProduct_id(Integer.parseInt(request.getParameter("product_id")));
+                    p.setManufacturer_id(Integer.parseInt(request.getParameter("manufacturer_id")));
+                    p.setProduct_code(request.getParameter("product_code"));
+                    p.setPurchase_cost(Float.parseFloat(request.getParameter("purchase_cost")));
+                    p.setQuantity_on_hand(Integer.parseInt(request.getParameter("quantity_on_hand")));
+                    p.setMarkup(Float.parseFloat(request.getParameter("markup")));
+                    p.setAvailable(request.getParameter("available"));
+                    p.setDescription(request.getParameter("description")); 
+                    
+                    
+                    dao_product.modifProduit(product,p);
+                   
+                    response.sendRedirect("/MaCaL/adminControl");
+
+                    } 
+                    break;
+                
+                case "Annuler les modifications":
+                    
+                    
+                    response.sendRedirect("/MaCaL/adminControl");
+                    
+                    
+                    break;
+                    
+                    
+                    
+                default :request.setAttribute("product", product);
+                         request.getRequestDispatcher(views).forward(request, response);
+            }
+            
+            
+            
+            
+            
+            
+        }catch (Exception ex){
+            
+            
+            
+        }
     }
 }
 

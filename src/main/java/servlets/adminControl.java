@@ -137,7 +137,7 @@ public class adminControl extends HttpServlet {
                 case "Modifier":
                     
                     product_id = Integer.parseInt(request.getParameter("product_id"));
-                    
+                    System.out.println(product_id);
                     response.sendRedirect("/MaCaL/modifProductControl?product_id="+product_id);
        
                     break;
