@@ -5,7 +5,7 @@
 <%@page import="model.tables.Purchase"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%Customer customer = (Customer) request.getAttribute( "customer" ); %>
-<%List<Purchase> purchases = (List<Purchase>) request.getAttribute( "purchases" ); %>
+<%List<Product> purchases = (List<Product>) request.getAttribute( "purchases" ); %>
 
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,9 @@
         <h1 style="text-align: center" style="background-color: grey">MaCaL</h1>
         <h2 style="text-align: left"  style="background-color: grey">Commandes de <%=customer.getName()%></h2>
         <p>${customer.getCustomer_id()}</p>
+        <p>${purchases.size()}</p>
         <table class="table table-bordered table-light">
+            
         <thead>
         <tr>
             <th scope="col">Description</th>
@@ -33,7 +35,7 @@
             <c:forEach var="purchase" items="purchases">
                 <tr>
                 <td>${purchase.getDescription()}</td>
-                <td>${purchase.getPurchase_cost()} €</td>
+                <td>${purchase.getPurchase_cost()}</td>
                 <td>${purchase.getQuantity_on_hand()}</td>
                 <td><form>
                     <input type="submit" name="action" value="Modifier" class="btn btn-primary">

@@ -52,9 +52,10 @@ public class purchaseControl extends HttpServlet {
             System.out.println("tout ok");
             HttpSession session = request.getSession();
             Customer customer = dao_client.getCustomer(Integer.parseInt((String) session.getAttribute("customer_id")));
-            List<Purchase> purchases = dao_purchase.getPurchases(customer);
-            
+
+            List<Product> purchases = dao_purchase.getProducts(customer);
             List<Product> products = dao_product.getProducts();
+
  
             switch (action) {
 		case "Retour au Catalogue":

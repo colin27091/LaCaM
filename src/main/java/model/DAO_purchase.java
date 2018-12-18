@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 import model.tables.Customer;
+import model.tables.Product;
 import model.tables.Purchase;
 
 
@@ -18,6 +19,39 @@ public class DAO_purchase {
     public DAO_purchase(DataSource ds){
         this.ds = ds;
     }
+    
+    
+    
+    public List<Product> getProducts(Customer customer){
+        List<Product> products = new ArrayList<Product>();
+        
+        String sql = "SELECT * FROM PURCHASE_ORDER INNER JOIN PRODUCT ON PURCHASE_ORDER.PRODUCT_ID = PRODUCT.PRODUCT_ID "
+                + "WHERE PURCHASE_ORDER.CUSTOMER_ID="+customer.getCustomer_id();
+        
+        try(Connection connection = ds.getConnection();
+                PreparedStatement stmt = connection.prepareStatement(sql)){
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                
+                Product product = new Product();
+                
+                product.setDescription(rs.getString("description"));
+                product.setPurchase_cost(rs.getInt("quantity")*rs.getFloat("purchase_cost")+rs.getFloat("shipping_cost"));
+                product.setQuantity_on_hand(rs.getInt("quantity"));
+                
+                products.add(product);
+            }
+            
+        } catch (Exception ex){
+            
+        }
+        
+        
+        return products;
+    }
+    
     
     public List<Purchase> getPurchases(Customer customer) {
         List<Purchase> purchases = new ArrayList<Purchase>();
@@ -44,15 +78,15 @@ public class DAO_purchase {
                 
                 
                 purchases.add(p);
-                
+                System.out.println(p.toString());
             }
             
             
         } catch (Exception ex){
             System.out.println("Erreur dans le DAO" +  ex);
+
         }
         
         return purchases;
     }
-    
 }
