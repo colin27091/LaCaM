@@ -59,7 +59,7 @@ public class loginControl extends HttpServlet {
                         System.out.println("is admin");
                         HttpSession session = request.getSession();
                         session.setAttribute("root", true);
-                        response.sendRedirect("adminControl");
+                        response.sendRedirect(request.getContextPath()+"adminControl");
                     } else {
                         if(dao.getLogin(email,Integer.parseInt(mdp))){
                             HttpSession session = request.getSession();
