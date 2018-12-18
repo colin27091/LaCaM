@@ -30,7 +30,8 @@
                 alert(quantite);
                 alert(prixprod);
                 return "marche pas putain, j'ai faim";
-            }
+            } 
+            
         </script>
     </head>
     <body style="background-color: grey" >
