@@ -48,20 +48,13 @@ public class modifProductControl extends HttpServlet {
         String action = request.getParameter("action");
         action = (action == null ) ? "" : action;
         
-        request.getRequestDispatcher(views).forward(request, response);
         try{
             
            
             DAO_product dao_product = new DAO_product(DataSourceFactory.getDataSource());
             DAO_login dao = new DAO_login(DataSourceFactory.getDataSource());
             
-            HttpSession session = request.getSession();
-            
-            
-
-            Product product = dao_product.getProduct(Integer.parseInt((String) session.getAttribute("product_id")));
-            
-            
+            Product product = dao_product.getProduct(Integer.parseInt((String) request.getAttribute("product_id")));
             
             switch(action){
                 case "Valider les modifications":
@@ -116,6 +109,7 @@ public class modifProductControl extends HttpServlet {
                     
                     
                 default :request.setAttribute("product", product);
+                
                          request.getRequestDispatcher(views).forward(request, response);
             }
             
