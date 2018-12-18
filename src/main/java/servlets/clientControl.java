@@ -69,6 +69,7 @@ public class clientControl extends HttpServlet {
                 case "Commander":
                     Purchase purchase = new Purchase();
                     Product product = new Product();
+                    response.sendRedirect("/MaCaL/");
                     //purchase.setProduct_id(Integer.parseInt(request.getParameter("quantité"))
                     purchase.setQuantity(Integer.parseInt(request.getParameter("quantité")));
                     
