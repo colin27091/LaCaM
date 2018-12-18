@@ -123,36 +123,6 @@
                         error: showError
                 });
         }
-        // Afficher les ventes par client
-        function showCodes() {
-        // On fait un appel AJAX pour chercher les codes
-        $.ajax({
-            url: "allProduit",
-            dataType: "json",
-            error: showError,
-            success: // La fonction qui traite les résultats
-                    function (result) {
-                        console.log(result);
-                        var chartData = [];
-                        var h = {};
-                        // Le code source du template est dans la page
-                        var template = $('#codesTemplate2').html();
-                        for(var client in result.records) {
-                        chartData.push(result.records[client]);
-
-                    }
-                        h.records=chartData;
-
-
-                        var processedTemplate = Mustache.to_html(template, h);
-                        // On combine le template avec le résultat de la requête
-                        $('#piechart').html(processedTemplate);
-
-
-                    }
-            });
-        }
-
     function ModifProduct(id) {
         var cost = $('#Cost-'+id).val();
         var quantity = $('#Quantity-'+id).val();
@@ -237,17 +207,9 @@
         $('#piechart').empty();
     }
 
-    function afficherProduits(){
-        $('#message').empty();
-        $('#graphique').hide();
-        $('#table').show();
-        $('#piechart').empty();
-        showCodes();
-    }
-
     function disconnect(){
         $.ajax({
-            data: {"action": "deconnexion"},
+            data: {"action": "Se Deconnecter"},
             success: function(){
                         window.location.href = "loginControl";
                         console.log("Déconnexion...");
@@ -321,9 +283,9 @@
         <tbody>
              <c:forEach var="product" items="${products}">
                 <tr>
-                 <% 
-                     int i = request.getIntHeader(product.getQuantity_on_hand());
-                     if (i==0){}
+                <% 
+                 //    int i = request.getIntHeader(product.getQuantity_on_hand());
+                    // if (i==0){}
                  %>
                           
                 
