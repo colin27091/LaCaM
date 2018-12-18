@@ -25,6 +25,14 @@
         <servlet-name>adminControl</servlet-name>
         <servlet-class>servlets.adminControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>commandesControl</servlet-name>
+        <servlet-class>servlets.commandesControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commandesControl</servlet-name>
+        <url-pattern>/commandesControl</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>loginControl</servlet-name>
         <url-pattern>/loginControl</url-pattern>

@@ -58,9 +58,9 @@
         <tbody>
              <c:forEach var="product" items="${products}">
                 <tr>
-                <td>${product.getDescription()}</td>
-                <td id="prixprod">${product.getPurchase_cost()} €</td>
-                <td><input name="Quantité" class="form-control col-md-4" type="number" id="start" value="1" min="1" max="${product.getQuantity_on_hand()}">(Quantité Max: ${product.getQuantity_on_hand()})</td>
+                <td name="nom">${product.getDescription()}</td>
+                <td name="prixprod">${product.getPurchase_cost()} €</td>
+                <td><input name="quantité" class="form-control col-md-4" type="number" id="start" value="1" min="1" max="${product.getQuantity_on_hand()}">(Quantité Max: ${product.getQuantity_on_hand()})</td>
                 <td><a onclick="prix()">Affiche</a> </td>
                 <td><form><input href="/MaCaL/clientControl?product_id="${product_id.getProduct_id()} type="submit" name="action" value="Commander" class="btn btn-primary" onclick="myFunction()"></form></td>
                 </tr>
