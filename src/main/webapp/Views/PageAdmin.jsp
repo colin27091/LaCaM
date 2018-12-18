@@ -51,12 +51,19 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Customer', 'Qty'],
+          ['Jumbo Eagle Corp',  110],
+          ['New Enterprises',  33],
+          ['Small Bill Company',  100],
+          ['Bob Hosting Corp', 620],
+          ['Early CentralComp', 500],
+          ['John Valley Computers', 1000],
+          ['Big Network Systems', 100],
+          ['West Valley Inc.', 75],
+          ['Zed Motor Co', 100],
+          ['Big Car Parts', 250],
+          ['Old Media Productions', 50],
+          ['Yankee Computer Repair Ltd', 100],
         ]);
         var options = {
           title: "Chiffre d'affaires"
